@@ -2,7 +2,19 @@
 
 @plugin "@tailwindcss/typography";
 
+
+@theme {
+    /* Define the functional name */
+    --color-bg: var(--bg);
+    --color-mg: var(--mg);
+    --color-fg: var(--fg);
+}
+
+/* Default Light Mode */
 :root {
+    --bg: #F9F9F9;
+    --mg: #ffffff;
+    --fg: #F6F6F6;
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
@@ -10,6 +22,13 @@
             rgb(var(--accent)),
             rgb(var(--accent-light)) 30%,
             white 60%);
+}
+
+/* Dark Mode logic */
+.dark {
+    --bg: #000000;
+    --mg: #1A1A1A;
+    --fg: #373737;
 }
 
 html {
