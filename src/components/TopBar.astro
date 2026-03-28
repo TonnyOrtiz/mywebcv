@@ -1,0 +1,165 @@
+---
+import sunIcon from "../assets/sun.svg?raw";
+import moonIcon from "../assets/moon.svg?raw";
+import autoIcon from "../assets/auto.svg?raw";
+import themeIcon from "../assets/theme.svg?raw";
+---
+
+<div id="container" class="flex flex-row w-full bg-bg">
+    <div id="logo"></div>
+    <div id="menu" class="flex w-full px-16 lg:px-128 py-2 text-md">
+        <ul class="flex flex-row justify-around w-full gap-8 text-font-primary">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div
+        id="theme-toggle"
+        class="flex px-8 py-2 justify-end items-center text-font-primary relative"
+    >
+        <button
+            id="theme-toggle-btn"
+            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+            aria-label="Toggle Theme Dropdown"
+            aria-expanded="false"
+        >
+            <!-- Static Theme Settings Icon -->
+            <span
+                class="w-7 h-7 block [&>svg]:w-full [&>svg]:h-full"
+                set:html={themeIcon}
+            />
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div
+            id="theme-dropdown"
+            class="hidden absolute right-8 top-12 mt-2 w-36 bg-mg border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden z-50 text-sm font-medium"
+        >
+            <button
+                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
+                data-theme="light"
+            >
+                <span
+                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+                    set:html={sunIcon}
+                />
+                Light
+            </button>
+            <button
+                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
+                data-theme="dark"
+            >
+                <span
+                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+                    set:html={moonIcon}
+                />
+                Dark
+            </button>
+            <button
+                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
+                data-theme="auto"
+            >
+                <span
+                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+                    set:html={autoIcon}
+                />
+                System
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const getSystemTheme = () =>
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+
+        const updateThemeUI = (themeSetting) => {
+            // 1. Update the document class
+            const isDark =
+                themeSetting === "auto"
+                    ? getSystemTheme() === "dark"
+                    : themeSetting === "dark";
+            document.documentElement.classList.toggle("dark", isDark);
+
+            // 2. Highlight the active option in the dropdown
+            document.querySelectorAll(".theme-option").forEach((btn) => {
+                if (btn instanceof HTMLElement) {
+                    if (btn.dataset.theme === themeSetting) {
+                        btn.classList.add("text-accent-blue");
+                    } else {
+                        btn.classList.remove("text-accent-blue");
+                    }
+                }
+            });
+        };
+
+        const applyTheme = (themeSetting) => {
+            if (!document.startViewTransition) {
+                updateThemeUI(themeSetting);
+            } else {
+                document.startViewTransition(() => updateThemeUI(themeSetting));
+            }
+
+            if (themeSetting === "auto") {
+                localStorage.removeItem("theme");
+            } else {
+                localStorage.setItem("theme", themeSetting);
+            }
+        };
+
+        // Initialize state on load
+        const initTheme =
+            typeof localStorage !== "undefined" && localStorage.getItem("theme")
+                ? localStorage.getItem("theme")
+                : "auto";
+        updateThemeUI(initTheme || "auto");
+
+        // Toggle dropdown
+        const toggleBtn = document.getElementById("theme-toggle-btn");
+        const dropdown = document.getElementById("theme-dropdown");
+
+        toggleBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            dropdown?.classList.toggle("hidden");
+        });
+
+        // Click outside to close
+        document.addEventListener("click", (e) => {
+            if (
+                toggleBtn &&
+                dropdown &&
+                !(e.target instanceof Node && toggleBtn.contains(e.target)) &&
+                !(e.target instanceof Node && dropdown.contains(e.target))
+            ) {
+                dropdown.classList.add("hidden");
+            }
+        });
+
+        // Theme options clicks
+        document.querySelectorAll(".theme-option").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const target = e.currentTarget;
+                if (target instanceof HTMLElement) {
+                    const selectedTheme = target.dataset.theme;
+                    if (selectedTheme) {
+                        applyTheme(selectedTheme);
+                    }
+                }
+                dropdown?.classList.add("hidden");
+            });
+        });
+
+        // Listen for OS theme changes if on "auto" mode
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", () => {
+                if (!localStorage.getItem("theme")) {
+                    applyTheme("auto");
+                }
+            });
+    </script>
+</div>

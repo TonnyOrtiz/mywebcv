@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tell Tailwind v4 to use the `.dark` class strategy for `dark:` variants */
+@variant dark (&:where(.dark, .dark *));
+
 @plugin "@tailwindcss/typography";
 
 
@@ -8,13 +11,42 @@
     --color-bg: var(--bg);
     --color-mg: var(--mg);
     --color-fg: var(--fg);
+    --color-font-primary: var(--col-font-primary);
+    --color-font-secondary: var(--col-font-secondary);
+    --color-font-green: var(--font-green);
+    --color-font-red: var(--font-red);
+    --color-font-blue: var(--font-blue);
+    --color-accent-violet: var(--accent-violet);
+    --color-accent-lilac: var(--accent-lilac);
+    --color-accent-blue: var(--accent-blue);
+    --color-accent-red: var(--accent-red);
+    --color-accent-green: var(--accent-green);
+    --color-btn-blue: var(--btn-blue);
+    --color-btn-green: var(--btn-green);
+    --color-btn-red: var(--btn-red);
+
 }
 
 /* Default Light Mode */
 :root {
-    --bg: #F9F9F9;
+    --bg: #ffffff;
     --mg: #ffffff;
     --fg: #F6F6F6;
+    --col-font-primary: #000000;
+    --col-font-secondary: #999999;
+    --accent-violet: #C57DF9;
+    --accent-lilac: #9897FF;
+    --accent-blue: #3869D1;
+    --accent-red: #FE465B;
+    --accent-green: #00AD3B;
+    --btn-blue: #DDEFFD;
+    --btn-green: #E4F9D8;
+    --btn-red: #F9D8D8;
+    --font-green: #66CB8D;
+    --font-red: #CB6666;
+    --font-blue: #529FC9;
+
+    font-family: 'System UI', 'Segoe UI', sans-serif;
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
@@ -29,18 +61,26 @@
     --bg: #000000;
     --mg: #1A1A1A;
     --fg: #373737;
+    --col-font-primary: #ffffff;
+    --col-font-secondary: #999999;
+    --accent-violet: #C57DF9;
+    --accent-lilac: #9897FF;
+    --accent-blue: #3869D1;
+    --accent-red: #FE465B;
+    --accent-green: #00AD3B;
+    --btn-blue: #DDEFFD;
+    --btn-green: #E4F9D8;
+    --btn-red: #F9D8D8;
+    --font-green: #66CB8D;
+    --font-red: #CB6666;
+    --font-blue: #529FC9;
 }
 
-html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    color: #fff;
-}
-
-body {
-    @apply grid place-content-center p-20;
-}
-
-body>div {
-    @apply container;
+/* Custom View Transition Durations */
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(icon-theme-switcher),
+::view-transition-new(icon-theme-switcher) {
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
