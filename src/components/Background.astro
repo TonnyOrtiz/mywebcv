@@ -1,0 +1,24 @@
+---
+/* Background.astro */
+---
+
+<div
+    class="fixed inset-0 -z-10 overflow-hidden bg-[url('./src/assets/bg.webp')] bg-cover bg-end h-screen w-screen"
+>
+    <div class="absolute inset-0 bg-bg/85 backdrop-blur-sm w-full h-full"></div>
+
+    <div class="absolute animate-circle-x">
+        <div
+            class="dark:w-96 dark:h-96 w-38 h-38 bg-accent-violet/20 dark:bg-accent-lilac/20 rounded-full blur-[10px] dark:blur-[100px]
+              animate-circle-y"
+        >
+        </div>
+    </div>
+
+    <div class="absolute bottom-10 right-10 animate-circle-nx">
+        <div
+            class="dark:w-96 dark:h-96 w-48 h-48 bg-accent-violet/20 dark:bg-accent-violet/20 rounded-full blur-[10px] dark:blur-[100px] animate-circle-ny"
+        >
+        </div>
+    </div>
+</div>

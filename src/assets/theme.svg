@@ -6,13 +6,13 @@
   
   <!-- Sun rays radiating from the empty (left) side -->
   <!-- Top ray -->
-  <path d="M12 2v1.6"></path>
+  <path d="M12 2v1.2" stroke-width="1.5"></path>
   <!-- Top-left ray -->
-  <path d="M4.93 4.93l1.06 1.06"></path>
+  <path d="M4.2 4.93l1.02 1.02" stroke-width="1.5"></path>
   <!-- Left ray -->
-  <path d="M2 12h1.6"></path>
+  <path d="M2 12h1.2" stroke-width="1.5"></path>
   <!-- Bottom-left ray -->
-  <path d="M4.93 19.07l1.06-1.06"></path>
+  <path d="M4.2 19.07l1.02-1.02" stroke-width="1.5"></path>
   <!-- Bottom ray -->
-  <path d="M12 20.4v1.6"></path>
+  <path d="M12 20.8v1.2" stroke-width="1.5"></path>
 </svg>

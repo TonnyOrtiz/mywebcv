@@ -2,6 +2,7 @@
 import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import Socials from "../components/Socials.astro";
 
 const technologies = await getCollection("technologies");
 console.log(technologies);
@@ -14,24 +15,250 @@ export const prerender = true;
 ---
 
 <Layout title="Home">
-	<main>
-		<section aria-label="Welcome">
-			<div class="px-4 mx-auto max-w-7xl">
+	<main class="flex-1">
+		<section class="mx-0" aria-label="Welcome">
+			<div
+				class="grid gap-0 md:gap-6 grid-cols-1 md:grid-cols-8 p-0 md:p-6 pt-0 w-full"
+			>
+				<div class="col-span-1 md:col-span-3 md:order-2">
+					<img
+						src="./src/assets/profile/purple.webp"
+						alt="Tony"
+						class="bg-mg shadow-lg md:rounded-3xl object-cover h-full"
+					/>
+				</div>
+				<!-- Make this background with a gradient from right to left from white to the purple #55236d and add a blur gloss like
+				 bg-radial-[at_200%_50%] from-photo-bg to-mg
+				 -->
 				<div
-					class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 p-6"
+					class="col-span-1 md:col-span-5 mask md:rounded-3xl bg-linear-to-r from-photo-bg/40 from-80% to-photo-bg/100 to-100%"
 				>
 					<div
-						class="bg-mg border border-slate-200 shadow-md rounded-3xl p-6 flex-2"
+						class="border
+						bg-radial-[at_200%_50%] from-photo-bg/40 to-mg/80
+						
+						border-slate-200
+						dark:border-neutral-900
+						shadow-lg
+						rounded-none md:rounded-3xl
+						p-10
+						flex-3
+						flex
+						flex-col
+						text-font-primary
+						min-h-full md:order-1
+						gap-4
+						md:gap-0
+						md:justify-around"
 					>
-						<h1>Hola, soy Tony</h1>
-						<p>Desarrollador de software</p>
+						<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+						<h1 class="text-3xl font-bold">
+							Ciencias de la Computación e Informática con énfasis
+							en Ingeniería de Software
+						</h1>
+						<p class="text-sm">
+							Me gusta crear software, resolver problemas y
+							aprender.
+						</p>
+
+						<Socials />
 					</div>
-					<div
-						class="bg-mg border border-slate-200 shadow-md rounded-3xl p-6 flex-2"
-					>
-						<h1>Hola, soy Tony</h1>
-						<p>Desarrollador de software</p>
-					</div>
+				</div>
+				<div
+					class="bg-linear-to-bl from-photo-bg/20 from-0% via-photo-bg/10 via-20% to-mg/50 to-100%
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-2
+					text-font-primary
+					min-h-full md:order-3
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-radial-[at_100%_0%] from-photo-bg/50 from-0% via-photo-bg/25 via-30% to-mg/50 to-80%
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-3
+					text-font-primary
+					min-h-full md:order-4
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-linear-to-b from-photo-bg/50 from-0% via-photo-bg/25 via-50% to-mg/50 to-100%
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-3
+					text-font-primary
+					min-h-full md:order-5
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-transparent
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-8
+					text-font-primary
+					min-h-full md:order-5
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-transparent
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-8
+					text-font-primary
+					min-h-full md:order-6
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-transparent
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-8
+					text-font-primary
+					min-h-full md:order-7
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
+				</div>
+				<div
+					class="bg-transparent
+					backdrop-blur-sm
+					border
+					border-slate-200
+					dark:border-neutral-900
+					shadow-lg
+					rounded-none md:rounded-3xl
+					p-10
+					flex-3
+					flex
+					flex-col
+					col-span-1 md:col-span-8
+					text-font-primary
+					min-h-full md:order-8
+					gap-4
+					md:gap-0
+					md:justify-around"
+				>
+					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
+					<h1 class="text-3xl font-bold">
+						Ciencias de la Computación e Informática con énfasis en
+						Ingeniería de Software
+					</h1>
+					<p class="text-sm">
+						Me gusta crear software, resolver problemas y aprender.
+					</p>
 				</div>
 			</div>
 		</section>

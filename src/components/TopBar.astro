@@ -5,10 +5,15 @@ import autoIcon from "../assets/auto.svg?raw";
 import themeIcon from "../assets/theme.svg?raw";
 ---
 
-<div id="container" class="flex flex-row w-full bg-bg">
+<div
+    id="container"
+    class="flex flex-row w-full bg-topbar-bg fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
+>
     <div id="logo"></div>
-    <div id="menu" class="flex w-full px-16 lg:px-128 py-2 text-md">
-        <ul class="flex flex-row justify-around w-full gap-8 text-font-primary">
+    <div id="menu" class="flex w-full px-16 lg:px-128 items-center text-md">
+        <ul
+            class="flex flex-row justify-around w-full gap-8 text-font-primary text-sm"
+        >
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Projects</a></li>
@@ -22,15 +27,16 @@ import themeIcon from "../assets/theme.svg?raw";
     >
         <button
             id="theme-toggle-btn"
-            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex flex-row items-center gap-2"
             aria-label="Toggle Theme Dropdown"
             aria-expanded="false"
         >
             <!-- Static Theme Settings Icon -->
             <span
-                class="w-7 h-7 block [&>svg]:w-full [&>svg]:h-full"
+                class="w-6 h-6 block [&>svg]:w-full [&>svg]:h-full"
                 set:html={themeIcon}
             />
+            <span class="text-sm whitespace-nowrap"> Display Mode</span>
         </button>
 
         <!-- Dropdown Menu -->
@@ -38,6 +44,16 @@ import themeIcon from "../assets/theme.svg?raw";
             id="theme-dropdown"
             class="hidden absolute right-8 top-12 mt-2 w-36 bg-mg border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden z-50 text-sm font-medium"
         >
+            <button
+                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
+                data-theme="auto"
+            >
+                <span
+                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+                    set:html={autoIcon}
+                />
+                Auto
+            </button>
             <button
                 class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
                 data-theme="light"
@@ -58,16 +74,6 @@ import themeIcon from "../assets/theme.svg?raw";
                 />
                 Dark
             </button>
-            <button
-                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
-                data-theme="auto"
-            >
-                <span
-                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
-                    set:html={autoIcon}
-                />
-                System
-            </button>
         </div>
     </div>
 
@@ -77,7 +83,7 @@ import themeIcon from "../assets/theme.svg?raw";
                 ? "dark"
                 : "light";
 
-        const updateThemeUI = (themeSetting) => {
+        const updateThemeUI = (themeSetting: string) => {
             // 1. Update the document class
             const isDark =
                 themeSetting === "auto"
@@ -97,7 +103,7 @@ import themeIcon from "../assets/theme.svg?raw";
             });
         };
 
-        const applyTheme = (themeSetting) => {
+        const applyTheme = (themeSetting: string) => {
             if (!document.startViewTransition) {
                 updateThemeUI(themeSetting);
             } else {
@@ -106,6 +112,8 @@ import themeIcon from "../assets/theme.svg?raw";
 
             if (themeSetting === "auto") {
                 localStorage.removeItem("theme");
+                // Update theme based on system preference
+                updateThemeUI(getSystemTheme());
             } else {
                 localStorage.setItem("theme", themeSetting);
             }

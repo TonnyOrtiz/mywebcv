@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Tell Tailwind v4 to use the `.dark` class strategy for `dark:` variants */
-@variant dark (&:where(.dark, .dark *));
-
 @plugin "@tailwindcss/typography";
 
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
-    /* Define the functional name */
+    --color-topbar-bg: var(--topbar-bg);
+    --color-photo-bg: var(--photo-bg);
+    --color-bg-accent: var(--bg-accent);
     --color-bg: var(--bg);
     --color-mg: var(--mg);
     --color-fg: var(--fg);
@@ -16,6 +16,7 @@
     --color-font-green: var(--font-green);
     --color-font-red: var(--font-red);
     --color-font-blue: var(--font-blue);
+    --color-accent-pink: var(--accent-pink);
     --color-accent-violet: var(--accent-violet);
     --color-accent-lilac: var(--accent-lilac);
     --color-accent-blue: var(--accent-blue);
@@ -25,15 +26,26 @@
     --color-btn-green: var(--btn-green);
     --color-btn-red: var(--btn-red);
 
+    --animate-blob: orbit-1 25s infinite ease-in-out, orbit-2 25s infinite ease-in-out;
+    --animate-orbit-1: orbit-1 25s infinite ease-in-out;
+    --animate-orbit-2: orbit-2 25s infinite ease-in-out;
+    --animate-circle-x: circle-x 40s infinite ease-in-out;
+    --animate-circle-y: circle-y 40s infinite ease-in-out;
+    --animate-circle-nx: circle-nx 40s infinite ease-in-out;
+    --animate-circle-ny: circle-ny 40s infinite ease-in-out;
+
 }
 
-/* Default Light Mode */
 :root {
+    --topbar-bg: rgba(255, 255, 255, 0.8);
+    --photo-bg: #dbb7e6;
+    --bg-accent: #ebc1ff;
     --bg: #ffffff;
-    --mg: #ffffff;
+    --mg: #eee2f7;
     --fg: #F6F6F6;
     --col-font-primary: #000000;
     --col-font-secondary: #999999;
+    --accent-pink: #ebc1ff;
     --accent-violet: #C57DF9;
     --accent-lilac: #9897FF;
     --accent-blue: #3869D1;
@@ -45,7 +57,6 @@
     --font-green: #66CB8D;
     --font-red: #CB6666;
     --font-blue: #529FC9;
-
     font-family: 'System UI', 'Segoe UI', sans-serif;
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
@@ -56,13 +67,16 @@
             white 60%);
 }
 
-/* Dark Mode logic */
 .dark {
+    --topbar-bg: rgba(0, 0, 0, 0.8);
+    --photo-bg: #1e0729;
+    --bg-accent: #190523;
     --bg: #000000;
     --mg: #1A1A1A;
     --fg: #373737;
     --col-font-primary: #ffffff;
     --col-font-secondary: #999999;
+    --accent-pink: #ebc1ff;
     --accent-violet: #C57DF9;
     --accent-lilac: #9897FF;
     --accent-blue: #3869D1;
@@ -74,6 +88,141 @@
     --font-green: #66CB8D;
     --font-red: #CB6666;
     --font-blue: #529FC9;
+}
+
+.social-button {
+    @apply p-2 size-10 md:size-14 lg:size-16 xl:size-18 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
+}
+
+/* Keyframes de CSS estándar */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(0.8);
+    }
+
+    5% {
+        transform: translate(-5px, -5px) scale(0.9);
+    }
+
+    25% {
+        transform: translate(-25vw, -40vh) scale(1.2);
+    }
+
+    50% {
+        transform: translate(-50vw, -50vh) scale(1.5);
+    }
+
+    75% {
+        transform: translate(-25vw, -40vh) scale(1.2);
+    }
+
+    95% {
+        transform: translate(-5px, -5px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(0.8);
+    }
+}
+
+@keyframes orbit-1 {
+
+    0%,
+    100% {
+        transform: translate(-50vw, -80vh) scale(1);
+    }
+
+    50% {
+        /* El "Rise": sube diagonalmente y crece */
+        transform: translate(0vw, 0vh) scale(1.3);
+        animation-timing-function: ease-in-out;
+    }
+}
+
+@keyframes orbit-2 {
+
+
+    75% {
+        transform: translate(0vw, 0vh) scale(1.2);
+    }
+
+    25% {
+        transform: translate(-50vw, -80vh) scale(0.8);
+    }
+}
+
+/* Movimiento Horizontal */
+@keyframes circle-x {
+
+    0%,
+    100% {
+        transform: translateX(0vw);
+    }
+
+    50% {
+        transform: translateX(90vw);
+    }
+}
+
+/* Movimiento Horizontal */
+@keyframes circle-nx {
+
+    0%,
+    100% {
+        transform: translateX(0vw);
+    }
+
+    50% {
+        transform: translateX(-90vw);
+    }
+}
+
+/* Movimiento Vertical con un desfase de tiempo */
+@keyframes circle-y {
+
+    0%,
+    50%,
+    100% {
+        transform: translateY(10vh) scale(0.8);
+    }
+
+    25%,
+    75% {
+        transform: translateY(80vh) scale(1.2);
+    }
+}
+
+@keyframes circle-ny {
+
+    0%,
+    50%,
+    100% {
+        transform: translateY(-10vh) scale(0.8);
+    }
+
+    25%,
+    75% {
+        transform: translateY(-80vh) scale(1.2);
+    }
+}
+
+/* Clase de utilidad para el desfase (esto crea el círculo) */
+.offset-delay {
+    animation-delay: -5s;
+    /* La mitad del tiempo de la mitad del ciclo */
+}
+
+/* Utilidad para el delay (opcional si quieres que los blobs no se muevan al mismo tiempo) */
+.animation-delay-2 {
+    animation-delay: 4s;
+}
+
+.animation-delay-4 {
+    animation-delay: 9s;
+}
+
+.animation-delay-6 {
+    animation-delay: 14s;
 }
 
 /* Custom View Transition Durations */
