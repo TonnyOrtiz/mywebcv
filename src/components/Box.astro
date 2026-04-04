@@ -1,0 +1,44 @@
+---
+interface Props {
+    class?: string;
+    // Puedes añadir más props aquí
+    [key: string]: any; // Esto permite recibir cualquier otro atributo (id, data-*, etc)
+}
+const { class: className = "", ...rest } = Astro.props;
+---
+
+<div
+    class:list={[
+        `col-span-1 relative group overflow-hidden 
+        md:rounded-3xl white/20 dark:bg-mg/10 
+        backdrop-blur-md shadow-2xl z-0
+        inset-shadow-sm inset-shadow-white/15`,
+        className,
+    ]}
+    {...rest}
+>
+    <div class="gradient-border absolute inset-0 pointer-events-none z-50">
+    </div>
+
+    <div
+        class="bg-[url('../assets/noise.svg')] opacity-[0.05] absolute inset-0 pointer-events-none z-10"
+    >
+    </div>
+
+    <div
+        class="relative
+        z-20
+        p-10
+        flex-3
+        flex
+        flex-col
+        col-span-1 md:col-span-3
+        text-font-primary
+        min-h-full
+        gap-4
+        md:gap-0
+        md:justify-around"
+    >
+        <slot />
+    </div>
+</div>

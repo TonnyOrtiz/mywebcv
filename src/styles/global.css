@@ -5,6 +5,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
+    --background-noise: url('../assets/noise.svg');
     --color-topbar-bg: var(--topbar-bg);
     --color-photo-bg: var(--photo-bg);
     --color-bg-accent: var(--bg-accent);
@@ -26,13 +27,12 @@
     --color-btn-green: var(--btn-green);
     --color-btn-red: var(--btn-red);
 
-    --animate-blob: orbit-1 25s infinite ease-in-out, orbit-2 25s infinite ease-in-out;
-    --animate-orbit-1: orbit-1 25s infinite ease-in-out;
-    --animate-orbit-2: orbit-2 25s infinite ease-in-out;
-    --animate-circle-x: circle-x 40s infinite ease-in-out;
-    --animate-circle-y: circle-y 40s infinite ease-in-out;
-    --animate-circle-nx: circle-nx 40s infinite ease-in-out;
-    --animate-circle-ny: circle-ny 40s infinite ease-in-out;
+    --animate-circle-x: circle-x 60s infinite ease-in-out;
+    --animate-circle-y: circle-y 60s infinite ease-in-out;
+    --animate-circle-nx: circle-nx 60s infinite ease-in-out;
+    --animate-circle-ny: circle-ny 60s infinite ease-in-out;
+    --color-glass-start: rgba(255, 255, 255, 0.5);
+    --color-glass-end: rgba(255, 255, 255, 0.05);
 
 }
 
@@ -40,8 +40,9 @@
     --topbar-bg: rgba(255, 255, 255, 0.8);
     --photo-bg: #dbb7e6;
     --bg-accent: #ebc1ff;
-    --bg: #ffffff;
-    --mg: #eee2f7;
+    --bg: #eae6fb;
+    --mg: rgb(241, 230, 249);
+    --test: rgb(140, 128, 150);
     --fg: #F6F6F6;
     --col-font-primary: #000000;
     --col-font-secondary: #999999;
@@ -71,7 +72,7 @@
     --topbar-bg: rgba(0, 0, 0, 0.8);
     --photo-bg: #1e0729;
     --bg-accent: #190523;
-    --bg: #000000;
+    --bg: #0e0c0e;
     --mg: #1A1A1A;
     --fg: #373737;
     --col-font-primary: #ffffff;
@@ -94,73 +95,21 @@
     @apply p-2 size-10 md:size-14 lg:size-16 xl:size-18 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
 }
 
-/* Keyframes de CSS estándar */
-@keyframes blob {
-    0% {
-        transform: translate(0px, 0px) scale(0.8);
-    }
-
-    5% {
-        transform: translate(-5px, -5px) scale(0.9);
-    }
-
-    25% {
-        transform: translate(-25vw, -40vh) scale(1.2);
-    }
-
-    50% {
-        transform: translate(-50vw, -50vh) scale(1.5);
-    }
-
-    75% {
-        transform: translate(-25vw, -40vh) scale(1.2);
-    }
-
-    95% {
-        transform: translate(-5px, -5px) scale(0.9);
-    }
-
-    100% {
-        transform: translate(0px, 0px) scale(0.8);
-    }
-}
-
-@keyframes orbit-1 {
-
-    0%,
-    100% {
-        transform: translate(-50vw, -80vh) scale(1);
-    }
-
-    50% {
-        /* El "Rise": sube diagonalmente y crece */
-        transform: translate(0vw, 0vh) scale(1.3);
-        animation-timing-function: ease-in-out;
-    }
-}
-
-@keyframes orbit-2 {
-
-
-    75% {
-        transform: translate(0vw, 0vh) scale(1.2);
-    }
-
-    25% {
-        transform: translate(-50vw, -80vh) scale(0.8);
-    }
-}
-
 /* Movimiento Horizontal */
 @keyframes circle-x {
 
     0%,
     100% {
-        transform: translateX(0vw);
+        transform: translate(0vw, 0vh) scaleX(1.5);
+    }
+
+    25%,
+    75% {
+        transform: translate(0vw, 0vh) scaleX(1);
     }
 
     50% {
-        transform: translateX(90vw);
+        transform: translate(85vw, 85vh) scaleX(0.5);
     }
 }
 
@@ -169,11 +118,16 @@
 
     0%,
     100% {
-        transform: translateX(0vw);
+        transform: translate(0vw, 0vh) scaleX(1.5);
+    }
+
+    25%,
+    75% {
+        transform: translate(0vw, 0vh) scaleX(1);
     }
 
     50% {
-        transform: translateX(-90vw);
+        transform: translate(-85vw, -85vh) scaleX(0.5);
     }
 }
 
@@ -181,28 +135,24 @@
 @keyframes circle-y {
 
     0%,
-    50%,
     100% {
-        transform: translateY(10vh) scale(0.8);
+        transform: rotate(0deg) scale(0.8);
     }
 
-    25%,
-    75% {
-        transform: translateY(80vh) scale(1.2);
+    50% {
+        transform: rotate(360deg) scale(1.2);
     }
 }
 
 @keyframes circle-ny {
 
     0%,
-    50%,
     100% {
-        transform: translateY(-10vh) scale(0.8);
+        transform: rotate(0deg) scale(0.8);
     }
 
-    25%,
-    75% {
-        transform: translateY(-80vh) scale(1.2);
+    50% {
+        transform: rotate(180deg) scale(1.2);
     }
 }
 
@@ -232,4 +182,39 @@
 ::view-transition-new(icon-theme-switcher) {
     animation-duration: 0.7s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility gradient-border {
+    position: relative;
+    border-radius: inherit;
+    /* Hereda el redondeo de la tarjeta */
+    padding: 1.5px;
+    /* Este será el GROSOR de tu borde */
+
+    /* El fondo del pseudo-elemento será el gradiente del borde */
+    background: linear-gradient(50deg,
+            rgba(140, 128, 150, 0.1) 0%,
+            rgba(241, 230, 249, 0.05) 50%,
+            rgba(241, 230, 249, 0.4) 100%);
+
+    /* Esto "recorta" el fondo para que solo se vea en el borde */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+}
+
+@layer utilities {
+    .perspective-1 {
+        perspective: 1px;
+    }
+
+    .transform-style-3d {
+        transform-style: preserve-3d;
+    }
+
+    .translate-z-neg-2 {
+        transform: translateZ(-2px) scale(3);
+    }
 }
