@@ -14,6 +14,7 @@
     --color-fg: var(--fg);
     --color-font-primary: var(--col-font-primary);
     --color-font-secondary: var(--col-font-secondary);
+    --color-font-tertiary: var(--col-font-tertiary);
     --color-font-green: var(--font-green);
     --color-font-red: var(--font-red);
     --color-font-blue: var(--font-blue);
@@ -34,6 +35,15 @@
     --color-glass-start: rgba(255, 255, 255, 0.5);
     --color-glass-end: rgba(255, 255, 255, 0.05);
 
+    --shadow-pic: 0px 0px 25px rgba(197, 125, 249, 0.25);
+    --shadow-instagram: 0px 0px 15px rgba(255, 102, 102, 1);
+    --shadow-github: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    --shadow-x: 0px 0px 15px rgba(197, 125, 249, 0.5);
+    --shadow-linkedin: 0px 0px 15px rgba(255, 255, 255, 0.6);
+    --shadow-mail: 0px 0px 15px rgba(125, 188, 255, 0.6);
+    --shadow-btn-blue: 0px 0px 15px rgba(125, 188, 255, 0.5);
+    --shadow-btn-green: 0px 0px 15px rgba(0, 173, 59, 0.5);
+
 }
 
 :root {
@@ -41,13 +51,14 @@
     --photo-bg: #dbb7e6;
     --bg-accent: #ebc1ff;
     --bg: #eae6fb;
-    --mg: rgb(241, 230, 249);
-    --test: rgb(140, 128, 150);
+    --mg: rgb(243, 233, 252);
+    --test: #0c0d0fe6;
     --fg: #F6F6F6;
-    --col-font-primary: #000000;
-    --col-font-secondary: #999999;
+    --col-font-primary: rgb(45, 56, 66);
+    --col-font-secondary: #525252;
+    --col-font-tertiary: #595959;
     --accent-pink: #ebc1ff;
-    --accent-violet: #C57DF9;
+    --accent-violet: rgb(197, 125, 249);
     --accent-lilac: #9897FF;
     --accent-blue: #3869D1;
     --accent-red: #FE465B;
@@ -73,10 +84,10 @@
     --photo-bg: #1e0729;
     --bg-accent: #190523;
     --bg: #0e0c0e;
-    --mg: #1A1A1A;
+    --mg: #101010;
     --fg: #373737;
     --col-font-primary: #ffffff;
-    --col-font-secondary: #999999;
+    --col-font-secondary: #bebebe;
     --accent-pink: #ebc1ff;
     --accent-violet: #C57DF9;
     --accent-lilac: #9897FF;
@@ -92,7 +103,7 @@
 }
 
 .social-button {
-    @apply p-2 size-10 md:size-14 lg:size-16 xl:size-18 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
+    @apply p-2 size-10 md:size-12 lg:size-14 xl:size-14 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
 }
 
 /* Movimiento Horizontal */

@@ -1,0 +1,29 @@
+---
+interface Props {
+    icon?: string;
+}
+
+const { icon } = Astro.props;
+---
+
+<a
+    class="bg-fg/80 px-4 py-4 rounded-xl animate-slide-up-fade animate-delay-500
+    shadow-lg hover:scale-110 transition-transform w-74 text-center"
+    href="https://www.linkedin.com/in/tonny-ortiz/"
+    target="_blank"
+    aria-label="Contact me"
+    title="Contact me"
+>
+    <span
+        class="font-semibold tracking-wider font-sans text-lg text-font-secondary inline-flex flex-row items-center gap-2"
+    >
+        <span><slot /></span>
+        {
+            icon ? (
+                <svg width="26" height="26">
+                    <use xlink:href={icon} />
+                </svg>
+            ) : null
+        }
+    </span>
+</a>

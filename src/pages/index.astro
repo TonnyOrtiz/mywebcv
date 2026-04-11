@@ -3,7 +3,10 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Socials from "../components/Socials.astro";
-import Box from "../components/Box.astro";
+import GlassBox from "../components/GlassBox.astro";
+import MaterialBox from "../components/MaterialBox.astro";
+import BtnBlue from "../components/btn/Blue.astro";
+import BtnGeneric from "../components/btn/Generic.astro";
 
 const technologies = await getCollection("technologies");
 console.log(technologies);
@@ -21,57 +24,90 @@ export const prerender = true;
 			<div
 				class="grid gap-0 md:gap-6 grid-cols-1 md:grid-cols-8 p-0 md:p-6 pt-0 w-full in"
 			>
-				<div class="col-span-1 md:col-span-3 md:order-2">
-					<img
-						src="./src/assets/profile/purple.webp"
-						alt="Tony"
-						class="bg-mg shadow-lg md:rounded-3xl object-cover h-full"
-					/>
-				</div>
-				<Box class="col-span-5 md:order-1">
-					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
-					<h1 class="text-3xl font-bold">
-						Ciencias de la Computación e Informática con énfasis en
-						Ingeniería de Software
-					</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
+				<GlassBox class="md:col-span-3 md:order-2">
+					<div
+						class="flex flex-row justify-around items-center py-none"
+					>
+						<div class="flex flex-col justify-start items-start">
+							<img
+								src="./src/assets/profile/purple.webp"
+								alt="Tony"
+								class="bg-mg rounded-full
+							object-cover h-64 md:w-60 md:h-auto w-auto md:aspect-square align-center dark:brightness-90 dark:contrast-105"
+							/>
+						</div>
 
-					<Socials />
-				</Box>
-				<Box class="col-span-2 md:order-4">
+						<div
+							class="flex flex-col justify-between items-start h-64"
+						>
+							<h1 class="text-5xl font-semibold pb-6 pt-4">
+								Tonny Ortiz Salazar
+							</h1>
+							<h1 class="text-xl pl-1 pb-1">
+								Universidad de Costa Rica | Computer Science
+							</h1>
+							<h1 class="text-xl pl-1 pb-8">
+								Based in Guanacaste, Costa Rica 🇨🇷
+							</h1>
+							<div class="pl-1 pb-2"><Socials /></div>
+						</div>
+					</div>
+				</GlassBox>
+
+				<GlassBox class="md:col-span-5 md:order-1 p-12 px-10">
+					<div
+						class="flex flex-row justify-around items-center py-none"
+					>
+						<article class="prose prose-xl text-font-primary">
+							<h1 class="text-font-primary">Data Engineer</h1>
+							<h2 class="text-font-primary">
+								With a Software Engineering heart & UX soul
+							</h2>
+							<p class="text-font-secondary">
+								I don’t just move data. I build the systems that
+								make it valuable. Specialized in scalable
+								pipelines and distributed architectures, with
+								the technical edge to transform backend
+								complexity into exceptional analytical
+								interfaces.
+							</p>
+						</article>
+						<div class="flex flex-col justify-between gap-6">
+							<BtnBlue icon="/src/assets/icons/arrow.svg"
+								>Explore my projects
+							</BtnBlue>
+							<span class="text-center text-xl">or</span>
+							<BtnGeneric icon="/src/assets/icons/message.svg"
+								>Let's talk
+							</BtnGeneric>
+						</div>
+					</div>
+				</GlassBox>
+				<GlassBox class="md:col-span-2 md:order-4">
 					<h1 class="text-3xl font-bold">PRUEBA</h1>
 					<h1 class="text-3xl font-bold">Estamos probando</h1>
 					<p class="text-sm">
 						Me gusta crear software, resolver problemas y aprender.
 					</p>
-				</Box>
-				<Box class="col-span-3 md:order-5">
+				</GlassBox>
+				<GlassBox class="md:col-span-3 md:order-5">
 					<h1 class="text-3xl font-bold">PRUEBA</h1>
 					<h1 class="text-3xl font-bold">Estamos probando</h1>
 					<p class="text-sm">
 						Me gusta crear software, resolver problemas y aprender.
 					</p>
-				</Box>
+				</GlassBox>
 
-				<Box class="col-span-3 md:order-6">
+				<GlassBox class="md:col-span-3 md:order-6">
 					<h1 class="text-3xl font-bold">PRUEBA</h1>
 					<h1 class="text-3xl font-bold pb-6">Estamos probando</h1>
 					<p class="text-sm">
 						Me gusta crear software, resolver problemas y aprender.
 					</p>
-				</Box>
+				</GlassBox>
 
-				<div
-					class="bg-transparent
-					backdrop-blur-sm
-					border
-					border-slate-200
-					dark:border-neutral-900
-					shadow-lg
-					rounded-none md:rounded-3xl
-					p-10
+				<MaterialBox
+					class="p-10
 					flex-3
 					flex
 					flex-col
@@ -90,7 +126,7 @@ export const prerender = true;
 					<p class="text-sm">
 						Me gusta crear software, resolver problemas y aprender.
 					</p>
-				</div>
+				</MaterialBox>
 				<div
 					class="bg-transparent
 					backdrop-blur-sm
