@@ -3,13 +3,18 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Socials from "../components/Socials.astro";
-import GlassBox from "../components/GlassBox.astro";
-import MaterialBox from "../components/MaterialBox.astro";
+import GlassBox from "../components/container/GlassBox.astro";
+import MaterialBox from "../components/container/MaterialBox.astro";
+import FullBox from "../components/container/FullBox.astro";
 import BtnBlue from "../components/btn/Blue.astro";
 import BtnGeneric from "../components/btn/Generic.astro";
+import { getEntry } from "astro:content";
 
 const technologies = await getCollection("technologies");
-console.log(technologies);
+const dataEngineering = await getEntry("categories", "dataengineering");
+const softwareDevelopment = await getEntry("categories", "softwaredevelopment");
+const cloudInfrastructure = await getEntry("categories", "cloudinfrastructure");
+console.log(dataEngineering?.data.skills);
 console.log(technologies[0].data.projects);
 
 export const prerender = true;
@@ -22,195 +27,222 @@ export const prerender = true;
 	<main class="flex-1">
 		<section class="mx-0" aria-label="Welcome">
 			<div
-				class="grid gap-0 md:gap-6 grid-cols-1 md:grid-cols-8 p-0 md:p-6 pt-0 w-full in"
+				id="scroller"
+				class="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-16 p-4 md:p-6 w-full scroll-smooth"
 			>
-				<GlassBox class="md:col-span-3 md:order-2">
-					<div
-						class="flex flex-row justify-around items-center py-none"
-					>
-						<div class="flex flex-col justify-start items-start">
-							<img
-								src="./src/assets/profile/purple.webp"
-								alt="Tony"
-								class="bg-mg rounded-full
-							object-cover h-64 md:w-60 md:h-auto w-auto md:aspect-square align-center dark:brightness-90 dark:contrast-105"
-							/>
-						</div>
-
+				<div
+					class="md:col-span-6 md:order-2 grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-1 md:grid-rows-3 2xl:grid-cols-2 2xl:grid-rows-1"
+				>
+					<GlassBox class="md:row-span-2 2xl:row-span-1">
 						<div
-							class="flex flex-col justify-between items-start h-64"
+							class="flex flex-col flex-2 md:flex-2 2xl:flex-3 justify-start items-start
+							rounded-l-xl md:rounded-b-none md:rounded-t-xl
+							2xl:rounded-l-xl 2xl:rounded-r-none
+							bg-zinc-500/30
+							p-0 inset-shadow-xs inset-shadow-white/30
+							h-full w-full
+							bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-bottom
+							contrast-115 brightness-105 dark:brightness-90 dark:contrast-120"
 						>
-							<h1 class="text-5xl font-semibold pb-6 pt-4">
-								Tonny Ortiz Salazar
-							</h1>
-							<h1 class="text-xl pl-1 pb-1">
-								Universidad de Costa Rica | Computer Science
-							</h1>
-							<h1 class="text-xl pl-1 pb-8">
-								Based in Guanacaste, Costa Rica 🇨🇷
-							</h1>
-							<div class="pl-1 pb-2"><Socials /></div>
 						</div>
-					</div>
-				</GlassBox>
+					</GlassBox>
+					<GlassBox class="md:row-span-1 xl:p-0">
+						<div
+							class="flex flex-row flex-1
+						md:flex-col 2xl:flex-row
+						justify-start 2xl:justify-center gap-4 md:gap-0
+						items-start md:items-center 2xl:items-center py-none"
+						>
+							<article
+								class="flex flex-col flex-3 md:flex-1 2xl:flex-3 justify-center
+							items-center py-6
+							prose prose-sm md:prose-sm lg:prose-base xl:prose-xl"
+							>
+								<h2
+									class="font-semibold text-font-primary mb-0 pb-0 md:pl-0"
+								>
+									@TonnyOrtiz
+								</h2>
+								<p
+									class="md:pl-0 text-font-primary whitespace-nowrap
+								text-center"
+								>
+									Software Engineer <br />
+									Guanacaste, CR 🇨🇷
+								</p>
+								<div class="md:pl-0 pb-2">
+									<Socials />
+								</div>
+							</article>
+						</div>
+					</GlassBox>
+				</div>
 
-				<GlassBox class="md:col-span-5 md:order-1 p-12 px-10">
+				<GlassBox class="md:col-span-10 md:order-1 p-12 px-10">
 					<div
-						class="flex flex-row justify-around items-center py-none"
+						class="flex flex-col 2xl:flex-row justify-around
+						items-center py-none gap-14 p-6
+						lg:p-8 xl:p-10"
 					>
-						<article class="prose prose-xl text-font-primary">
-							<h1 class="text-font-primary">Data Engineer</h1>
+						<article
+							class="prose md:prose-sm lg:prose-base xl:prose-xl text-font-primary"
+						>
+							<h1
+								class="text-blue-900 font-semibold tracking-wider dark:text-blue-300"
+							>
+								Full Stack Engineer
+							</h1>
 							<h2 class="text-font-primary">
-								With a Software Engineering heart & UX soul
+								With a Data Engineering heart & UX soul
 							</h2>
 							<p class="text-font-secondary">
-								I don’t just move data. I build the systems that
-								make it valuable. Specialized in scalable
+								I don&apos;t just move data. I build the systems
+								that make it valuable. Specialized in scalable
 								pipelines and distributed architectures, with
 								the technical edge to transform backend
 								complexity into exceptional analytical
 								interfaces.
 							</p>
 						</article>
-						<div class="flex flex-col justify-between gap-6">
+						<div
+							class="flex flex-col sm:flex-row md:flex-col justify-between gap-6"
+						>
 							<BtnBlue icon="/src/assets/icons/arrow.svg"
 								>Explore my projects
 							</BtnBlue>
-							<span class="text-center text-xl">or</span>
+							<span
+								class="hidden md:block text-center text-xl text-font-secondary"
+								>or</span
+							>
 							<BtnGeneric icon="/src/assets/icons/message.svg"
 								>Let's talk
 							</BtnGeneric>
 						</div>
 					</div>
 				</GlassBox>
-				<GlassBox class="md:col-span-2 md:order-4">
-					<h1 class="text-3xl font-bold">PRUEBA</h1>
-					<h1 class="text-3xl font-bold">Estamos probando</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</GlassBox>
-				<GlassBox class="md:col-span-3 md:order-5">
-					<h1 class="text-3xl font-bold">PRUEBA</h1>
-					<h1 class="text-3xl font-bold">Estamos probando</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</GlassBox>
+				<GlassBox class="md:col-span-12 md:order-3">
+					<div
+						class="flex flex-row items-start justify-center gap-40 py-10 px-20"
+					>
+						<section class="flex-1 flex flex-col items-center">
+							<h3
+								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
+							>
+								<span
+									class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+								></span>
+								Data Engineering
+							</h3>
+							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
+								{
+									dataEngineering?.data.skills.map(
+										(skill) => (
+											<div class="flex flex-col">
+												<img
+													src={`/src/assets/icons/${skill.icon}`}
+													alt={skill.name}
+													class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible"
+												/>
+												<div class="h-0">
+													<div class="relative bg-purple-500/60 dark:bg-purple-400/60 rounded-2xl w-30 h-20 bottom-20 left-0 blur-2xl -z-20" />
+												</div>
+												<span class="text-center text-lg font-semibold pt-4 h-16">
+													{skill.name}
+												</span>
+											</div>
+										),
+									)
+								}
+							</div>
+						</section>
 
-				<GlassBox class="md:col-span-3 md:order-6">
-					<h1 class="text-3xl font-bold">PRUEBA</h1>
-					<h1 class="text-3xl font-bold pb-6">Estamos probando</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</GlassBox>
+						<section class="flex-1 flex flex-col items-center">
+							<h3
+								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
+							>
+								<span
+									class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+								></span>
+								Software Development
+							</h3>
+							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
+								{
+									softwareDevelopment?.data.skills.map(
+										(skill) => (
+											<div class="flex flex-col">
+												<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
+													<use
+														xlink:href={`/src/assets/icons/${skill.icon}`}
+													/>
+												</svg>
+												<div class="h-0">
+													<div class="relative bg-blue-500/30 dark:bg-blue-400/40 rounded-2xl w-28 h-15 bottom-17 left-0 blur-xl -z-20" />
+												</div>
+												<span
+													class="text-center text-lg font-semibold pt-4 h-16
+													"
+												>
+													{skill.name}
+												</span>
+											</div>
+										),
+									)
+								}
+							</div>
+						</section>
 
-				<MaterialBox
-					class="p-10
-					flex-3
-					flex
-					flex-col
-					col-span-1 md:col-span-8
-					text-font-primary
-					min-h-full md:order-6
-					gap-4
-					md:gap-0
-					md:justify-around"
-				>
-					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
-					<h1 class="text-3xl font-bold">
-						Ciencias de la Computación e Informática con énfasis en
-						Ingeniería de Software
-					</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</MaterialBox>
-				<div
-					class="bg-transparent
-					backdrop-blur-sm
-					border
-					border-slate-200
-					dark:border-neutral-900
-					shadow-lg
-					rounded-none md:rounded-3xl
-					p-10
-					flex-3
-					flex
-					flex-col
-					col-span-1 md:col-span-8
-					text-font-primary
-					min-h-full md:order-7
-					gap-4
-					md:gap-0
-					md:justify-around"
-				>
-					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
-					<h1 class="text-3xl font-bold">
-						Ciencias de la Computación e Informática con énfasis en
-						Ingeniería de Software
-					</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</div>
-				<div
-					class="bg-transparent
-					backdrop-blur-sm
-					border
-					border-slate-200
-					dark:border-neutral-900
-					shadow-lg
-					rounded-none md:rounded-3xl
-					p-10
-					flex-3
-					flex
-					flex-col
-					col-span-1 md:col-span-8
-					text-font-primary
-					min-h-full md:order-8
-					gap-4
-					md:gap-0
-					md:justify-around"
-				>
-					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
-					<h1 class="text-3xl font-bold">
-						Ciencias de la Computación e Informática con énfasis en
-						Ingeniería de Software
-					</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</div>
-				<div
-					class="bg-transparent
-					backdrop-blur-sm
-					border
-					border-slate-200
-					dark:border-neutral-900
-					shadow-lg
-					rounded-none md:rounded-3xl
-					p-10
-					flex-3
-					flex
-					flex-col
-					col-span-1 md:col-span-8
-					text-font-primary
-					min-h-full md:order-9
-					gap-4
-					md:gap-0
-					md:justify-around"
-				>
-					<h1 class="text-3xl font-bold">Hola, soy Tonny</h1>
-					<h1 class="text-3xl font-bold">
-						Ciencias de la Computación e Informática con énfasis en
-						Ingeniería de Software
-					</h1>
-					<p class="text-sm">
-						Me gusta crear software, resolver problemas y aprender.
-					</p>
-				</div>
+						<section class="flex-1 flex flex-col items-center">
+							<h3
+								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
+							>
+								<span
+									class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(148,163,184,0.5)]"
+								></span>
+								Cloud & Infrastructure
+							</h3>
+							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
+								{
+									cloudInfrastructure?.data.skills.map(
+										(skill) => (
+											<div class="flex flex-col">
+												<img
+													src={`/src/assets/icons/${skill.icon}`}
+													alt={skill.name}
+													class="h-20 filter drop-shadow-[0_0_5px_rgba(0,186,124,0.4)] dark:drop-shadow-[0_0_6px_rgba(220,255,255,0.6)] overflow-visible"
+												/>
+												<div class="h-0">
+													<div class="relative bg-emerald-400/60 dark:bg-emerald-500/45 rounded-2xl w-20 h-15 bottom-17 left-7 blur-xl -z-23" />
+												</div>
+												<span class="text-center text-lg font-semibold pt-4 h-16">
+													{skill.name}
+												</span>
+											</div>
+										),
+									)
+								}
+							</div>
+						</section>
+					</div>
+				</GlassBox>
+				<GlassBox class="md:col-span-4 md:order-4">
+					<div
+						class="flex flex-col justify-center items-center text-font-primary
+						prose prose-lg"
+					>
+						<svg
+							class="h-80 w-80 p-10 justify-center items-center opacity-90 dark:opacity-90"
+						>
+							<use xlink:href="/src/assets/icons/ucr.svg"></use>
+						</svg>
+						<h3 class="text-font-primary text-center uppercase">
+							B.S. in Computer Science
+						</h3>
+						<p class="text-font-primary text-center">
+							Concentration in Software Engineering
+						</p>
+						<p class="text-font-primary text-center">2022 - 2025</p>
+					</div>
+				</GlassBox>
 			</div>
 		</section>
 	</main>

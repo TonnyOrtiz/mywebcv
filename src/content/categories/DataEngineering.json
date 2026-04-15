@@ -1,0 +1,28 @@
+{
+    "skills": [
+        {
+            "name": "Apache Spark",
+            "icon": "Apache Spark.svg"
+        },
+        {
+            "name": "Apache Druid",
+            "icon": "Apache Druid.svg"
+        },
+        {
+            "name": "Apache Superset",
+            "icon": "Apache Superset.svg"
+        },
+        {
+            "name": "Apache Airflow",
+            "icon": "Apache Airflow.svg"
+        },
+        {
+            "name": "PostgreSQL",
+            "icon": "PostgresSQL.svg"
+        },
+        {
+            "name": "Python",
+            "icon": "Python.svg"
+        }
+    ]
+}

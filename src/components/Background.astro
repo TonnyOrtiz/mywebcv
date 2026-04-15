@@ -2,9 +2,10 @@
 /* Background.astro */
 ---
 
---- /* Background.astro */ ---
-
 <div
-    class="fixed inset-0 -z-10 bg-[url('../assets/bglight.png')] dark:bg-[url('../assets/bgpur.png')] bg-cover opacity-20 dark:opacity-80"
+    class="fixed inset-0 -z-10 bg-[url('../assets/bg/bgle.webp')] dark:bg-[url('../assets/bg/bgde.webp')] bg-cover bg-top-right h-lvh w-full"
 >
+    {/* Transparent overlay acting as a filter */}
+    <div class="absolute inset-0 bg-bg/50 dark:bg-black/40 backdrop-blur-[0px]">
+    </div>
 </div>

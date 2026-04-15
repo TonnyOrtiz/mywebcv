@@ -10,25 +10,22 @@ const { class: className = "", ...rest } = Astro.props;
 <div
     class:list={[
         `col-span-1 relative group overflow-hidden rounded-xl
-        md:rounded-3xl bg-white/10 dark:bg-zinc-900/80
+        white/20 dark:bg-mg/10 
         backdrop-blur-md shadow-2xl z-0
-        inset-shadow-sm inset-shadow-white/15`,
+        `,
         className,
     ]}
     {...rest}
 >
-    <div class="gradient-border absolute inset-0 pointer-events-none z-50">
-    </div>
-
     <div
-        class="bg-[url('../assets/noise.svg')] opacity-[0.01] absolute inset-0 pointer-events-none z-10"
+        class="bg-mg opacity-100 absolute inset-0 pointer-events-none z-10
+        inset-shadow-xs inset-shadow-white/40 dark:inset-shadow-white/10"
     >
     </div>
 
     <div
         class="relative
         z-20
-        p-10
         flex-3
         flex
         flex-col

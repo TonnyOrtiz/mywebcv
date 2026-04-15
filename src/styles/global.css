@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
+@import "tailwind-animations";
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -43,7 +44,20 @@
     --shadow-mail: 0px 0px 15px rgba(125, 188, 255, 0.6);
     --shadow-btn-blue: 0px 0px 15px rgba(125, 188, 255, 0.5);
     --shadow-btn-green: 0px 0px 15px rgba(0, 173, 59, 0.5);
+    --breakpoint-3xl: 116rem;
 
+    --inset-shadow-2xs: inset 1px 1px 1px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
+    --inset-shadow-xs: inset 1px 1px 2px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
+    --inset-shadow-sm: inset 2px 2px 4px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
+    --shadow-sm: 1px 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 1px 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-md: 4px 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 2px 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-lg: 10px 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 4px 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-xl: 20px 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 8px 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-2xl: 25px 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
+    --shadow-glow-sm: 0px 0px 6px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-glow-md: 0px 0px 7px 1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-glow-lg: 0px 0px 10px 3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-glow-xl: 0px 0px 20px 5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
 }
 
 :root {
@@ -54,8 +68,8 @@
     --mg: rgb(243, 233, 252);
     --test: #0c0d0fe6;
     --fg: #F6F6F6;
-    --col-font-primary: rgb(45, 56, 66);
-    --col-font-secondary: #525252;
+    --col-font-primary: #222a31;
+    --col-font-secondary: #3e3e3e;
     --col-font-tertiary: #595959;
     --accent-pink: #ebc1ff;
     --accent-violet: rgb(197, 125, 249);
@@ -83,11 +97,11 @@
     --topbar-bg: rgba(0, 0, 0, 0.8);
     --photo-bg: #1e0729;
     --bg-accent: #190523;
-    --bg: #0e0c0e;
+    --bg: #000000;
     --mg: #101010;
     --fg: #373737;
     --col-font-primary: #ffffff;
-    --col-font-secondary: #bebebe;
+    --col-font-secondary: #a9a9a9;
     --accent-pink: #ebc1ff;
     --accent-violet: #C57DF9;
     --accent-lilac: #9897FF;
@@ -104,6 +118,10 @@
 
 .social-button {
     @apply p-2 size-10 md:size-12 lg:size-14 xl:size-14 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
+}
+
+.glow-lg {
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, .1), 0 2px 40px 10px rgba(154, 170, 255, .05), 0 0 16px -7px rgba(154, 170, 255, .05);
 }
 
 /* Movimiento Horizontal */

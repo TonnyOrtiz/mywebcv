@@ -20,6 +20,19 @@ const technologies = defineCollection({
     }),
 });
 
+const categories = defineCollection({
+    loader: glob({
+        pattern: "**/*.json",
+        base: "./src/content/categories",
+    }),
+    schema: z.object({
+        skills: z.array(z.object({
+            name: z.string(),
+            icon: z.string(),
+        })),
+    }),
+});
+
 export const collections = {
-    technologies,
+    technologies, categories
 };

@@ -9,22 +9,25 @@ const { class: className = "", ...rest } = Astro.props;
 
 <div
     class:list={[
-        `col-span-1 relative group overflow-hidden rounded-xl
-        md:rounded-3xl white/20 dark:bg-mg/10 
+        `col-span-1 relative group overflow-hidden 
+        rounded-xl
+        bg-white/40 dark:bg-black/50
         backdrop-blur-md shadow-2xl z-0
-        inset-shadow-sm inset-shadow-white/15`,
+        inset-shadow-xs inset-shadow-white/40 dark:inset-shadow-white/20`,
         className,
     ]}
     {...rest}
 >
-    <div class="bg-mg opacity-100 absolute inset-0 pointer-events-none z-10">
+    <div
+        class="bg-[url('../assets/noise.svg')] opacity-[0.02] absolute inset-0 pointer-events-none z-10"
+    >
     </div>
 
     <div
         class="relative
         z-20
-        p-10
         flex-3
+        h-full
         flex
         flex-col
         col-span-1 md:col-span-3
@@ -32,7 +35,7 @@ const { class: className = "", ...rest } = Astro.props;
         min-h-full
         gap-4
         md:gap-0
-        md:justify-around"
+        md:justify-center"
     >
         <slot />
     </div>

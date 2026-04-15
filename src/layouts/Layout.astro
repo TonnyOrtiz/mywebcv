@@ -3,6 +3,7 @@ import "../styles/global.css";
 import TopBar from "../components/TopBar.astro";
 import { ClientRouter } from "astro:transitions";
 import Background from "../components/Background.astro";
+import ThemePopup from "../components/common/ThemePopup.astro";
 
 interface Props {
 	title: string;
@@ -15,7 +16,7 @@ const { title } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 		<ClientRouter />
@@ -43,7 +44,8 @@ const { title } = Astro.props;
 	<body class="bg-bg flex flex-col min-h-screen">
 		<Background />
 		<TopBar />
-		<div class="flex-1 flex flex-col pt-14">
+		<ThemePopup />
+		<div class="flex-1 flex flex-col pt-16 md:pt-14">
 			<slot />
 		</div>
 	</body>

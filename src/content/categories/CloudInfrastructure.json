@@ -1,0 +1,40 @@
+{
+    "skills": [
+        {
+            "name": "Azure",
+            "icon": "Azure.svg"
+        },
+        {
+            "name": "AWS",
+            "icon": "AWS.svg"
+        },
+        {
+            "name": "Heroku",
+            "icon": "Heroku.svg"
+        },
+        {
+            "name": "Docker",
+            "icon": "Docker.svg"
+        },
+        {
+            "name": "Firebase",
+            "icon": "Firebase.svg"
+        },
+        {
+            "name": "Cloudflare",
+            "icon": "Cloudflare.svg"
+        },
+        {
+            "name": "GitHub Actions",
+            "icon": "GitHub.svg"
+        },
+        {
+            "name": "Kubernetes",
+            "icon": "Kubernetes.svg"
+        },
+        {
+            "name": "Google Cloud",
+            "icon": "GoogleCloud.svg"
+        }
+    ]
+}

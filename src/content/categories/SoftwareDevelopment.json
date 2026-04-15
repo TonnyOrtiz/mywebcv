@@ -1,0 +1,40 @@
+{
+    "skills": [
+        {
+            "name": "Astro",
+            "icon": "Astro.svg"
+        },
+        {
+            "name": "Next.js",
+            "icon": "Next.js.svg"
+        },
+        {
+            "name": "Tailwind CSS",
+            "icon": "TailwindCSS.svg"
+        },
+        {
+            "name": "Flutter",
+            "icon": "Flutter.svg"
+        },
+        {
+            "name": ".NET Core",
+            "icon": "NETcore.svg"
+        },
+        {
+            "name": "C++",
+            "icon": "C++.svg"
+        },
+        {
+            "name": "Typescript",
+            "icon": "TypeScript.svg"
+        },
+        {
+            "name": "Java",
+            "icon": "Java.svg"
+        },
+        {
+            "name": "Vue.js",
+            "icon": "Vue.js.svg"
+        }
+    ]
+}

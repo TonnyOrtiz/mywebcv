@@ -1,0 +1,47 @@
+---
+import sunIcon from "../../assets/sun.svg?raw";
+import moonIcon from "../../assets/moon.svg?raw";
+import autoIcon from "../../assets/auto.svg?raw";
+---
+
+<!-- Dropdown Menu -->
+<div
+    id="theme-dropdown"
+    class="hidden fixed right-2 md:right-8 top-14 mt-2 w-36
+            border border-slate-200 dark:border-slate-800
+            rounded-xl overflow-hidden z-50 text-sm font-medium
+            bg-white/40 dark:bg-black/40 backdrop-blur-sm shadow-2xl
+            inset-shadow-xs inset-shadow-white/40 dark:inset-shadow-white/20
+            text-font-primary"
+>
+    <button
+        class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left"
+        data-theme="auto"
+    >
+        <span
+            class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+            set:html={autoIcon}
+        />
+        Auto
+    </button>
+    <button
+        class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left"
+        data-theme="light"
+    >
+        <span
+            class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+            set:html={sunIcon}
+        />
+        Light
+    </button>
+    <button
+        class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left"
+        data-theme="dark"
+    >
+        <span
+            class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
+            set:html={moonIcon}
+        />
+        Dark
+    </button>
+</div>

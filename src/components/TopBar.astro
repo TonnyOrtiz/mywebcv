@@ -1,7 +1,4 @@
 ---
-import sunIcon from "../assets/sun.svg?raw";
-import moonIcon from "../assets/moon.svg?raw";
-import autoIcon from "../assets/auto.svg?raw";
 import themeIcon from "../assets/theme.svg?raw";
 ---
 
@@ -10,12 +7,11 @@ import themeIcon from "../assets/theme.svg?raw";
     class="flex flex-row w-full bg-topbar-bg fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
 >
     <div id="logo"></div>
-    <div id="menu" class="flex w-full px-16 lg:px-128 items-center text-md">
+    <div id="menu" class="flex w-full px-10 lg:px-128 items-center text-md">
         <ul
             class="flex flex-row justify-around w-full gap-8 text-font-primary text-sm"
         >
             <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
@@ -23,7 +19,7 @@ import themeIcon from "../assets/theme.svg?raw";
 
     <div
         id="theme-toggle"
-        class="flex px-8 py-2 justify-end items-center text-font-primary relative"
+        class="flex px-4 md:px-8 py-2 justify-end items-center text-font-primary relative"
     >
         <button
             id="theme-toggle-btn"
@@ -36,45 +32,10 @@ import themeIcon from "../assets/theme.svg?raw";
                 class="w-6 h-6 block [&>svg]:w-full [&>svg]:h-full"
                 set:html={themeIcon}
             />
-            <span class="text-sm whitespace-nowrap"> Display Mode</span>
+            <span class="text-sm whitespace-nowrap hidden md:block">
+                Display Mode</span
+            >
         </button>
-
-        <!-- Dropdown Menu -->
-        <div
-            id="theme-dropdown"
-            class="hidden absolute right-8 top-12 mt-2 w-36 bg-mg border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden z-50 text-sm font-medium"
-        >
-            <button
-                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
-                data-theme="auto"
-            >
-                <span
-                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
-                    set:html={autoIcon}
-                />
-                Auto
-            </button>
-            <button
-                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
-                data-theme="light"
-            >
-                <span
-                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
-                    set:html={sunIcon}
-                />
-                Light
-            </button>
-            <button
-                class="theme-option w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left"
-                data-theme="dark"
-            >
-                <span
-                    class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
-                    set:html={moonIcon}
-                />
-                Dark
-            </button>
-        </div>
     </div>
 
     <script>
