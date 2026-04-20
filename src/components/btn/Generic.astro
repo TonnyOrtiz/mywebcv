@@ -1,17 +1,18 @@
 ---
 interface Props {
     icon?: string;
+    href?: string;
 }
 
-const { icon } = Astro.props;
+const { icon, href = "https://www.linkedin.com/in/tonny-ortiz/" } = Astro.props;
 ---
 
 <a
-    class="group/btn-gen bg-fg/0 backdrop-blur-md px-4 py-4 rounded-xl animate-slide-up-fade animate-delay-400
-    hover:scale-110 transition-transform w-60 md:w-74 text-center
+    class="group/btn-gen bg-fg/0 backdrop-blur-md px-4 py-4 rounded-xl
+    hover:scale-105 transition-transform w-60 md:w-74 text-center
     shadow-lg dark:shadow-md shadow-gray-500/20 dark:shadow-gray-400/20
-    inset-shadow-xs inset-shadow-white/40"
-    href="https://www.linkedin.com/in/tonny-ortiz/"
+    inset-shadow-xs inset-shadow-white/40 duration-100"
+    href={href}
     target="_blank"
     aria-label="Contact me"
     title="Contact me"
@@ -26,7 +27,7 @@ const { icon } = Astro.props;
                     width="26"
                     height="26"
                     class="group-hover/btn-gen:translate-x-2
-                    transition-transform duration-300"
+                    transition-transform duration-200"
                 >
                     <use xlink:href={icon} />
                 </svg>

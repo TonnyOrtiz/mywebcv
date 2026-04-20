@@ -2,39 +2,35 @@
     "skills": [
         {
             "name": "Astro",
-            "icon": "Astro.svg"
+            "icon": "astro"
         },
         {
             "name": "Next.js",
-            "icon": "Next.js.svg"
-        },
-        {
-            "name": "Tailwind CSS",
-            "icon": "TailwindCSS.svg"
+            "icon": "nextjs"
         },
         {
             "name": "Flutter",
-            "icon": "Flutter.svg"
+            "icon": "flutter"
         },
         {
             "name": ".NET Core",
-            "icon": "NETcore.svg"
+            "icon": "netcore"
         },
         {
             "name": "C++",
-            "icon": "C++.svg"
+            "icon": "c++"
         },
         {
             "name": "Typescript",
-            "icon": "TypeScript.svg"
+            "icon": "typescript"
         },
         {
             "name": "Java",
-            "icon": "Java.svg"
+            "icon": "java"
         },
         {
             "name": "Vue.js",
-            "icon": "Vue.js.svg"
+            "icon": "vue"
         }
     ]
 }

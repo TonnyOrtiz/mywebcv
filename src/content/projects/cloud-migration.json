@@ -1,0 +1,6 @@
+{
+  "title": "Cloud Migration",
+  "description": "Automated migration scripts utilizing Terraform to transition legacy monolithic services to AWS.",
+  "link": "https://github.com/tonnyortiz/cloud-migration",
+  "tags": ["Cloud", "Terraform", "AWS"]
+}

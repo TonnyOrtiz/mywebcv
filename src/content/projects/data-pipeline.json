@@ -1,0 +1,7 @@
+{
+  "title": "Enterprise Data Pipeline",
+  "description": "A highly scalable data ingestion pipeline built with Apache Spark and Kafka. It processes over 10TB of event data daily with sub-second latency, providing real-time analytics to the dashboard.",
+  "link": "https://github.com/tonnyortiz/data-pipeline",
+  "tags": ["Data Engineering", "Apache Spark", "Kafka", "Python"],
+  "isMain": true
+}

@@ -1,0 +1,6 @@
+{
+  "title": "E-Commerce Backend",
+  "description": "Microservices architecture for a high-traffic e-commerce platform using Node.js and Kubernetes.",
+  "link": "https://github.com/tonnyortiz/ecommerce-backend",
+  "tags": ["Backend", "Node.js", "Kubernetes"]
+}

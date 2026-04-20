@@ -14,6 +14,12 @@ const technologies = await getCollection("technologies");
 const dataEngineering = await getEntry("categories", "dataengineering");
 const softwareDevelopment = await getEntry("categories", "softwaredevelopment");
 const cloudInfrastructure = await getEntry("categories", "cloudinfrastructure");
+const allProjects = await getCollection("projects");
+const mainProject = allProjects.find((p: any) => p.data.isMain);
+const secondaryProjects = allProjects
+	.filter((p: any) => !p.data.isMain)
+	.slice(0, 3);
+console.log("DEBUG ALL_PROJECTS:", JSON.stringify(allProjects, null, 2));
 console.log(dataEngineering?.data.skills);
 console.log(technologies[0].data.projects);
 
@@ -24,77 +30,174 @@ export const prerender = true;
 ---
 
 <Layout title="Home">
-	<main class="flex-1">
-		<section class="mx-0" aria-label="Welcome">
+	<main
+		class="flex flex-col p-6 gap-12 mt-14
+		md:px-18 md:gap-20
+		xl:px-18 xl:gap-24 xl:max-w-500 xl:self-center"
+	>
+		<section id="bio" class="" aria-label="Bio">
 			<div
 				id="scroller"
-				class="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-16 p-4 md:p-6 w-full scroll-smooth"
+				class="grid gap-6 grid-cols-1
+				md:gap-10
+				lg:grid-cols-16
+				xl:gap-10"
 			>
-				<div
-					class="md:col-span-6 md:order-2 grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-1 md:grid-rows-3 2xl:grid-cols-2 2xl:grid-rows-1"
+				<section
+					id="personalSubsection"
+					class="grid gap-3 grid-cols-3 grid-rows-2 grid-flow-col
+					sm:grid-flow-row
+					md:gap-5
+					lg:order-2 lg:grid-rows-7 lg:grid-cols-1 lg:col-span-7
+					xl:grid-rows-3 xl:grid-cols-1 xl:col-span-6 xl:gap-6
+					2xl:grid-cols-2 2xl:grid-rows-3 2xl:col-span-7"
 				>
-					<GlassBox class="md:row-span-2 2xl:row-span-1">
+					<GlassBox
+						class="col-span-2
+						sm:col-span-1
+						md:row-span-1 md:col-span-1
+						lg:row-span-2 lg:col-span-1
+						xl:row-span-1 xl:col-span-1
+						2xl:row-span-2 2xl:col-span-1"
+					>
 						<div
 							class="flex flex-col flex-2 md:flex-2 2xl:flex-3 justify-start items-start
 							rounded-l-xl md:rounded-b-none md:rounded-t-xl
 							2xl:rounded-l-xl 2xl:rounded-r-none
 							bg-zinc-500/30
 							p-0 inset-shadow-xs inset-shadow-white/30
-							h-full w-full
-							bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-bottom
+							bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-top
 							contrast-115 brightness-105 dark:brightness-90 dark:contrast-120"
 						>
 						</div>
 					</GlassBox>
-					<GlassBox class="md:row-span-1 xl:p-0">
+					<GlassBox
+						class="col-span-2
+						sm:col-span-2
+						md:row-span-1 md:col-span-2
+						lg:p-0 lg:row-span-3 lg:col-span-1
+						xl:p-0 xl:row-span-1 xl:col-span-1
+						2xl:row-span-2 2xl:col-span-1"
+					>
 						<div
-							class="flex flex-row flex-1
-						md:flex-col 2xl:flex-row
-						justify-start 2xl:justify-center gap-4 md:gap-0
-						items-start md:items-center 2xl:items-center py-none"
+							class="flex flex-col flex-1 justify-center items-center py-none
+							sm:flex-row sm:justify-center sm:items-center
+							lg:flex-col lg:gap-0 lg:items-center
+							2xl:justify-center 2xl:items-center"
 						>
 							<article
-								class="flex flex-col flex-3 md:flex-1 2xl:flex-3 justify-center
-							items-center py-6
-							prose prose-sm md:prose-sm lg:prose-base xl:prose-xl"
+								class="flex flex-col flex-3 justify-center items-center prose prose-sm py-2
+								sm:p-6 sm:items-start
+								lg:flex-1 lg:py-4 lg:prose-base lg:items-center lg:pb-0
+								xl:prose-lg
+								2xl:flex-3"
 							>
-								<h2
+								<h3
 									class="font-semibold text-font-primary mb-0 pb-0 md:pl-0"
 								>
 									@TonnyOrtiz
-								</h2>
-								<p
+								</h3>
+								<span
 									class="md:pl-0 text-font-primary whitespace-nowrap
 								text-center"
 								>
-									Software Engineer <br />
+									B.S. in Computer Science
+								</span>
+								<span
+									class="md:pl-0 text-font-primary whitespace-nowrap
+								text-center"
+								>
 									Guanacaste, CR 🇨🇷
-								</p>
-								<div class="md:pl-0 pb-2">
-									<Socials />
-								</div>
+								</span>
 							</article>
+							<div
+								class="pb-2
+								sm:pr-6
+								md:pb-0
+								lg:pb-6 lg:pr-0
+								2xl:pb-10"
+							>
+								<Socials />
+							</div>
 						</div>
 					</GlassBox>
-				</div>
-
-				<GlassBox class="md:col-span-10 md:order-1 p-12 px-10">
 					<div
-						class="flex flex-col 2xl:flex-row justify-around
-						items-center py-none gap-14 p-6
-						lg:p-8 xl:p-10"
+						class="grid gap-3 grid-rows-3 row-span-2 col-span-1
+						sm:col-span-3 sm:grid-rows-1 sm:grid-cols-3 sm:row-span-1
+						md:gap-5 md:grid-rows-1 md:grid-cols-3
+						lg:row-span-2 lg:col-span-1
+						xl:grid-cols-3 xl:grid-rows-1 xl:row-span-1 xl:col-span-1 xl:gap-6
+						2xl:grid-cols-3 2xl:grid-rows-1 2xl:col-span-2 2xl:row-span-1"
+					>
+						<GlassBox class="lg:col-span-1 xl:col-span-1">
+							<div class="flex flex-col
+									xl:flex-col">
+								<span
+									class="text-font-primary text-3xl text-center
+								md:text-4xl 2xl:text-5xl"
+									>3+</span
+								>
+								<span
+									class="text-font-primary text-sm px-4 text-center
+								md:text-md 2xl:text-xl"
+									>years experience</span
+								>
+							</div>
+						</GlassBox>
+						<GlassBox class="justify-center"
+							><svg
+								class="h-22 w-auto opacity-90 dark:opacity-90 p-6 text-font-primary
+								sm:h-26 sm:p-6
+								md:h-28 md:p-6
+								lg:h-24 lg:p-2
+								2xl:h-28 2xl:p-6"
+							>
+								<use xlink:href="/sprite.svg#ucr"></use>
+							</svg>
+						</GlassBox>
+						<GlassBox>
+							<span
+								class="text-font-primary text-3xl text-center
+								md:text-4xl 2xl:text-5xl"
+								>4+</span
+							>
+							<span
+								class="text-font-primary text-sm px-4 text-center
+								md:text-md 2xl:text-xl"
+								>projects</span
+							>
+						</GlassBox>
+					</div>
+				</section>
+
+				<GlassBox
+					class="p-8 px-10
+					md:col-span-1 md:p-12 md:px-10
+					lg:order-1 lg:col-span-9
+					xl:col-span-10
+					2xl:col-span-9"
+				>
+					<div
+						class="flex flex-col justify-around items-center py-none p-4 gap-10
+						md:gap-14
+						lg:gap-8
+						lg:p-6
+						xl:p-10
+						2xl:flex-row"
 					>
 						<article
-							class="prose md:prose-sm lg:prose-base xl:prose-xl text-font-primary"
+							class="prose prose-sm text-font-primary
+							md:prose-base
+							xl:prose-lg"
 						>
-							<h1
-								class="text-blue-900 font-semibold tracking-wider dark:text-blue-300"
+							<h2
+								class="text-blue-900 font-semibold dark:text-blue-300"
 							>
 								Full Stack Engineer
-							</h1>
-							<h2 class="text-font-primary">
-								With a Data Engineering heart & UX soul
 							</h2>
+							<h4 class="text-font-primary">
+								With a Data Engineering heart & UX soul
+							</h4>
 							<p class="text-font-secondary">
 								I don&apos;t just move data. I build the systems
 								that make it valuable. Specialized in scalable
@@ -107,142 +210,206 @@ export const prerender = true;
 						<div
 							class="flex flex-col sm:flex-row md:flex-col justify-between gap-6"
 						>
-							<BtnBlue icon="/src/assets/icons/arrow.svg"
+							<BtnBlue icon="/sprite.svg#arrow"
 								>Explore my projects
 							</BtnBlue>
 							<span
 								class="hidden md:block text-center text-xl text-font-secondary"
 								>or</span
 							>
-							<BtnGeneric icon="/src/assets/icons/message.svg"
+							<BtnGeneric icon="/sprite.svg#message"
 								>Let's talk
 							</BtnGeneric>
 						</div>
 					</div>
 				</GlassBox>
-				<GlassBox class="md:col-span-12 md:order-3">
-					<div
-						class="flex flex-row items-start justify-center gap-40 py-10 px-20"
-					>
-						<section class="flex-1 flex flex-col items-center">
-							<h3
-								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-							>
-								<span
-									class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-								></span>
-								Data Engineering
-							</h3>
-							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
-								{
-									dataEngineering?.data.skills.map(
-										(skill) => (
-											<div class="flex flex-col">
-												<img
-													src={`/src/assets/icons/${skill.icon}`}
-													alt={skill.name}
-													class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible"
-												/>
-												<div class="h-0">
-													<div class="relative bg-purple-500/60 dark:bg-purple-400/60 rounded-2xl w-30 h-20 bottom-20 left-0 blur-2xl -z-20" />
-												</div>
-												<span class="text-center text-lg font-semibold pt-4 h-16">
-													{skill.name}
-												</span>
-											</div>
-										),
-									)
-								}
-							</div>
-						</section>
-
-						<section class="flex-1 flex flex-col items-center">
-							<h3
-								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-							>
-								<span
-									class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
-								></span>
-								Software Development
-							</h3>
-							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
-								{
-									softwareDevelopment?.data.skills.map(
-										(skill) => (
-											<div class="flex flex-col">
-												<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
-													<use
-														xlink:href={`/src/assets/icons/${skill.icon}`}
-													/>
-												</svg>
-												<div class="h-0">
-													<div class="relative bg-blue-500/30 dark:bg-blue-400/40 rounded-2xl w-28 h-15 bottom-17 left-0 blur-xl -z-20" />
-												</div>
-												<span
-													class="text-center text-lg font-semibold pt-4 h-16
-													"
-												>
-													{skill.name}
-												</span>
-											</div>
-										),
-									)
-								}
-							</div>
-						</section>
-
-						<section class="flex-1 flex flex-col items-center">
-							<h3
-								class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-							>
-								<span
-									class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(148,163,184,0.5)]"
-								></span>
-								Cloud & Infrastructure
-							</h3>
-							<div class="grid grid-cols-3 sm:grid-cols-3 gap-12">
-								{
-									cloudInfrastructure?.data.skills.map(
-										(skill) => (
-											<div class="flex flex-col">
-												<img
-													src={`/src/assets/icons/${skill.icon}`}
-													alt={skill.name}
-													class="h-20 filter drop-shadow-[0_0_5px_rgba(0,186,124,0.4)] dark:drop-shadow-[0_0_6px_rgba(220,255,255,0.6)] overflow-visible"
-												/>
-												<div class="h-0">
-													<div class="relative bg-emerald-400/60 dark:bg-emerald-500/45 rounded-2xl w-20 h-15 bottom-17 left-7 blur-xl -z-23" />
-												</div>
-												<span class="text-center text-lg font-semibold pt-4 h-16">
-													{skill.name}
-												</span>
-											</div>
-										),
-									)
-								}
-							</div>
-						</section>
-					</div>
-				</GlassBox>
-				<GlassBox class="md:col-span-4 md:order-4">
-					<div
-						class="flex flex-col justify-center items-center text-font-primary
-						prose prose-lg"
-					>
-						<svg
-							class="h-80 w-80 p-10 justify-center items-center opacity-90 dark:opacity-90"
+			</div>
+		</section>
+		<section id="skills" class="" aria-label="Skills">
+			<GlassBox class="md:col-span-2 lg:col-span-16 md:order-3">
+				<div
+					class="flex flex-col xl:flex-row md:items-start justify-center gap-16 xl:gap-18 xl:px-12 py-10 px-20"
+				>
+					<section class="flex-1 flex flex-col items-center">
+						<h3
+							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
 						>
-							<use xlink:href="/src/assets/icons/ucr.svg"></use>
-						</svg>
-						<h3 class="text-font-primary text-center uppercase">
-							B.S. in Computer Science
+							<span
+								class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+							></span>
+							Data Engineering
 						</h3>
-						<p class="text-font-primary text-center">
-							Concentration in Software Engineering
-						</p>
-						<p class="text-font-primary text-center">2022 - 2025</p>
-					</div>
-				</GlassBox>
+						<div
+							class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-3 gap-12"
+						>
+							{
+								dataEngineering?.data.skills.map((skill) => (
+									<div class="flex flex-col">
+										<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
+											<use
+												xlink:href={`/sprite.svg#${skill.icon}`}
+											/>
+										</svg>
+										<div class="h-0">
+											<div class="relative bg-purple-500/60 dark:bg-purple-400/60 rounded-2xl w-30 h-20 bottom-20 left-0 blur-2xl -z-20" />
+										</div>
+										<span class="text-center text-sm font-semibold pt-4 h-16">
+											{skill.name}
+										</span>
+									</div>
+								))
+							}
+						</div>
+					</section>
+
+					<section class="flex-1 flex flex-col items-center">
+						<h3
+							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
+						>
+							<span
+								class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+							></span>
+							Software Development
+						</h3>
+						<div
+							class="grid grid-cols-3 gap-12
+							sm:grid-cols-4 xl:grid-cols-3 xl:gap-8"
+						>
+							{
+								softwareDevelopment?.data.skills.map(
+									(skill) => (
+										<div class="flex flex-col">
+											<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
+												<use
+													xlink:href={`/sprite.svg#${skill.icon}`}
+												/>
+											</svg>
+											<div class="h-0">
+												<div class="relative bg-blue-500/30 dark:bg-blue-400/40 rounded-2xl w-28 h-15 bottom-17 left-0 blur-xl -z-20" />
+											</div>
+											<span
+												class="text-center text-sm font-semibold pt-4 h-16
+													"
+											>
+												{skill.name}
+											</span>
+										</div>
+									),
+								)
+							}
+						</div>
+					</section>
+
+					<section class="flex-1 flex flex-col items-center">
+						<h3
+							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
+						>
+							<span
+								class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(148,163,184,0.5)]"
+							></span>
+							Cloud & Infrastructure
+						</h3>
+						<div
+							class="grid gap-12 grid-cols-3 sm:grid-cols-4
+							xl:grid-cols-3 xl:gap-8"
+						>
+							{
+								cloudInfrastructure?.data.skills.map(
+									(skill) => (
+										<div class="flex flex-col">
+											<svg class="h-20 filter drop-shadow-[0_0_5px_rgba(0,186,124,0.4)] dark:drop-shadow-[0_0_6px_rgba(220,255,255,0.6)] overflow-visible">
+												<use
+													xlink:href={`/sprite.svg#${skill.icon}`}
+												/>
+											</svg>
+											<div class="h-0">
+												<div class="relative bg-emerald-400/60 dark:bg-emerald-500/45 rounded-2xl w-20 h-15 bottom-17 left-7 blur-xl -z-23" />
+											</div>
+											<span class="text-center text-sm font-semibold pt-4 h-16">
+												{skill.name}
+											</span>
+										</div>
+									),
+								)
+							}
+						</div>
+					</section>
+				</div>
+			</GlassBox>
+		</section>
+		<section class="max-w-7xl mx-auto w-full mb-12" aria-label="Projects">
+			<h2
+				class="text-xl md:text-2xl uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-8 mt-12 flex items-center gap-2"
+			>
+				<span
+					class="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
+				></span>
+				Selected Projects
+			</h2>
+			<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-10">
+				{
+					mainProject && (
+						<GlassBox class="xl:col-span-2 p-8 md:p-12 flex flex-col justify-between h-full min-h-[400px]">
+							<div class="flex flex-col h-full items-start">
+								<h3 class="text-3xl md:text-4xl font-bold text-font-primary">
+									{mainProject.data.title}
+								</h3>
+								<p class="mt-6 text-lg text-font-secondary flex-grow">
+									{mainProject.data.description}
+								</p>
+								<div class="flex flex-wrap gap-3 mt-6 mb-10">
+									{mainProject.data.tags.map((tag: any) => (
+										<span class="px-3 py-1 bg-white/20 dark:bg-white/10 rounded-full text-sm text-font-primary shadow-sm font-medium">
+											{tag}
+										</span>
+									))}
+								</div>
+								<div class="mt-auto">
+									<BtnBlue
+										icon="/sprite.svg#arrow"
+										href={mainProject.data.link}
+									>
+										Check Out
+									</BtnBlue>
+								</div>
+							</div>
+						</GlassBox>
+					)
+				}
+
+				<div
+					class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-6 md:gap-10 xl:col-span-1"
+				>
+					{
+						secondaryProjects.map((proj: any) => (
+							<GlassBox class="p-6 md:p-8 flex flex-col justify-between h-full min-h-[250px]">
+								<div class="flex flex-col h-full items-start">
+									<h3 class="text-xl md:text-2xl font-bold text-font-primary">
+										{proj.data.title}
+									</h3>
+									<p class="mt-3 text-sm md:text-base text-font-secondary flex-grow line-clamp-3">
+										{proj.data.description}
+									</p>
+									<div class="flex flex-wrap gap-2 mt-4 mb-6">
+										{proj.data.tags.map((tag: any) => (
+											<span class="px-2 py-1 bg-white/20 dark:bg-white/10 rounded-full text-xs text-font-primary shadow-sm">
+												{tag}
+											</span>
+										))}
+									</div>
+									<div class="mt-auto">
+										<BtnGeneric
+											icon="/sprite.svg#arrow"
+											href={proj.data.link}
+										>
+											Go to
+										</BtnGeneric>
+									</div>
+								</div>
+							</GlassBox>
+						))
+					}
+				</div>
 			</div>
 		</section>
 	</main>

@@ -1,0 +1,6 @@
+{
+  "title": "Analytics Dashboard",
+  "description": "Real-time analytics dashboard with React and WebSockets, visualizing complex metrics intuitively.",
+  "link": "https://github.com/tonnyortiz/analytics-dashboard",
+  "tags": ["Frontend", "React", "WebSockets"]
+}

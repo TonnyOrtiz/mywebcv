@@ -44,7 +44,7 @@
     --shadow-mail: 0px 0px 15px rgba(125, 188, 255, 0.6);
     --shadow-btn-blue: 0px 0px 15px rgba(125, 188, 255, 0.5);
     --shadow-btn-green: 0px 0px 15px rgba(0, 173, 59, 0.5);
-    --breakpoint-3xl: 116rem;
+    --breakpoint-3xl: 120rem;
 
     --inset-shadow-2xs: inset 1px 1px 1px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
     --inset-shadow-xs: inset 1px 1px 2px var(--tw-inset-shadow-color, rgb(0 0 0 / 0.05));
@@ -117,7 +117,7 @@
 }
 
 .social-button {
-    @apply p-2 size-10 md:size-12 lg:size-14 xl:size-14 flex items-center justify-center rounded-full hover:scale-110 transition-transform;
+    @apply p-2 size-11 md:size-12 lg:size-14 xl:size-14 flex items-center justify-center rounded-md hover:scale-110 transition-transform;
 }
 
 .glow-lg {

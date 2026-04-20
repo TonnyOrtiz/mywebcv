@@ -33,6 +33,20 @@ const categories = defineCollection({
     }),
 });
 
+const projects = defineCollection({
+    loader: glob({
+        pattern: "**/*.json",
+        base: "./src/content/projects",
+    }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        link: z.string(),
+        tags: z.array(z.string()),
+        isMain: z.boolean().optional(),
+    }),
+});
+
 export const collections = {
-    technologies, categories
+    technologies, categories, projects
 };

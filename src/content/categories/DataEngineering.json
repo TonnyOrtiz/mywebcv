@@ -2,27 +2,27 @@
     "skills": [
         {
             "name": "Apache Spark",
-            "icon": "Apache Spark.svg"
+            "icon": "spark"
         },
         {
             "name": "Apache Druid",
-            "icon": "Apache Druid.svg"
+            "icon": "druid"
         },
         {
             "name": "Apache Superset",
-            "icon": "Apache Superset.svg"
+            "icon": "superset"
         },
         {
             "name": "Apache Airflow",
-            "icon": "Apache Airflow.svg"
+            "icon": "airflow"
         },
         {
             "name": "PostgreSQL",
-            "icon": "PostgresSQL.svg"
+            "icon": "postgres"
         },
         {
             "name": "Python",
-            "icon": "Python.svg"
+            "icon": "python"
         }
     ]
 }
