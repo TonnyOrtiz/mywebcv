@@ -23,6 +23,10 @@
         {
             "name": "Python",
             "icon": "python"
+        },
+        {
+            "name": "SQLServer",
+            "icon": "sqlserver"
         }
     ]
 }

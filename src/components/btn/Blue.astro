@@ -4,23 +4,18 @@ interface Props {
     href?: string;
 }
 
-const { icon, href = "https://www.linkedin.com/in/tonny-ortiz/" } = Astro.props;
+const { icon, href = "#profile" } = Astro.props;
 ---
 
-<a
-    class=""
-    href={href}
-    target="_blank"
-    aria-label="Contact me"
-    title="Contact me"
->
+<a class="" href={href} aria-label="Contact me" title="Contact me">
     <div
         class="group/btn-blue bg-blue-600 dark:bg-blue-600 px-4 py-4 rounded-xl
-    shadow-glow-sm dark:shadow-glow-md shadow-blue-400/80 hover:scale-105 transition-transform w-60 md:w-74 text-center relative
-    inset-shadow-sm inset-shadow-white/30 duration-100"
+    shadow-glow-sm dark:shadow-glow-md shadow-blue-400/80 hover:scale-105 transition-transform w-60 text-center relative
+    inset-shadow-sm inset-shadow-white/30 duration-100
+    lg:w-60"
     >
         <span
-            class="font-semibold tracking-wider font-sans text-sm md:text-lg text-white inline-flex flex-row items-center gap-2 uppercase"
+            class="font-semibold tracking-wider font-sans text-sm lg:text-lg text-white inline-flex flex-row items-center gap-2 uppercase"
         >
             <span class="transition-all"><slot /></span>
             {

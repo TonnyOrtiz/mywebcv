@@ -23,19 +23,5 @@ const { class: className = "", ...rest } = Astro.props;
         class="bg-[url('../assets/noise.svg')] opacity-[0.02] absolute inset-0 pointer-events-none z-10"
     >
     </div>
-
-    <div
-        class="relative
-        z-20
-        flex-3
-        h-full
-        flex
-        flex-col
-        col-span-1 md:col-span-3
-        text-font-primary
-        md:gap-0
-        justify-center"
-    >
-        <slot />
-    </div>
+    <slot />
 </div>

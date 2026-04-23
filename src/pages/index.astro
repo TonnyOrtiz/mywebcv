@@ -1,11 +1,8 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Socials from "../components/Socials.astro";
 import GlassBox from "../components/container/GlassBox.astro";
-import MaterialBox from "../components/container/MaterialBox.astro";
-import FullBox from "../components/container/FullBox.astro";
 import BtnBlue from "../components/btn/Blue.astro";
 import BtnGeneric from "../components/btn/Generic.astro";
 import { getEntry } from "astro:content";
@@ -31,52 +28,54 @@ export const prerender = true;
 
 <Layout title="Home">
 	<main
-		class="flex flex-col p-6 gap-12 mt-14
-		md:px-18 md:gap-20
-		xl:px-18 xl:gap-24 xl:max-w-500 xl:self-center"
+		class="flex flex-col px-6
+		md:px-18 md:gap-15
+		xl:px-18 xl:gap-24 xl:self-center"
 	>
-		<section id="bio" class="" aria-label="Bio">
-			<div
-				id="scroller"
-				class="grid gap-6 grid-cols-1
-				md:gap-10
-				lg:grid-cols-16
-				xl:gap-10"
+		<section
+			id="profile"
+			class="max-w-7xl mx-auto w-full pt-14"
+			aria-label="Profile"
+		>
+			<h2
+				class="text-xl md:text-2xl uppercase tracking-[0.2em] text-gray-500 dark:text-slate-200 py-8 px-2 flex items-center gap-2
+				relative w-fit"
 			>
+				<div
+					class="absolute inset-0 bg-bg/40 blur-xl overflow-visible -z-10"
+				>
+				</div>
+				<span
+					class="w-2 h-2 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
+				></span>
+				Profile
+			</h2>
+			<div id="scroller" class="grid grid-cols-1
+				gap-6
+				lg:grid-cols-16">
 				<section
 					id="personalSubsection"
-					class="grid gap-3 grid-cols-3 grid-rows-2 grid-flow-col
+					class="grid gap-4 grid-cols-3 grid-rows-2 grid-flow-col
 					sm:grid-flow-row
-					md:gap-5
-					lg:order-2 lg:grid-rows-7 lg:grid-cols-1 lg:col-span-7
-					xl:grid-rows-3 xl:grid-cols-1 xl:col-span-6 xl:gap-6
-					2xl:grid-cols-2 2xl:grid-rows-3 2xl:col-span-7"
+					md:gap-6
+					lg:order-2 lg:grid-rows-3 lg:grid-cols-2 lg:col-span-8
+					xl:grid-rows-3 xl:grid-cols-2 xl:col-span-7
+					2xl:grid-cols-2 2xl:grid-rows-3"
 				>
 					<GlassBox
-						class="col-span-2
+						class="bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-top
+						contrast-115 brightness-105 dark:brightness-90 dark:contrast-120
+						col-span-2
 						sm:col-span-1
 						md:row-span-1 md:col-span-1
 						lg:row-span-2 lg:col-span-1
-						xl:row-span-1 xl:col-span-1
 						2xl:row-span-2 2xl:col-span-1"
-					>
-						<div
-							class="flex flex-col flex-2 md:flex-2 2xl:flex-3 justify-start items-start
-							rounded-l-xl md:rounded-b-none md:rounded-t-xl
-							2xl:rounded-l-xl 2xl:rounded-r-none
-							bg-zinc-500/30
-							p-0 inset-shadow-xs inset-shadow-white/30
-							bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-top
-							contrast-115 brightness-105 dark:brightness-90 dark:contrast-120"
-						>
-						</div>
-					</GlassBox>
+					/>
 					<GlassBox
-						class="col-span-2
+						class="flex flex-col justify-center items-center col-span-2
 						sm:col-span-2
 						md:row-span-1 md:col-span-2
-						lg:p-0 lg:row-span-3 lg:col-span-1
-						xl:p-0 xl:row-span-1 xl:col-span-1
+						lg:p-0 lg:row-span-2 lg:col-span-1
 						2xl:row-span-2 2xl:col-span-1"
 					>
 						<div
@@ -122,40 +121,37 @@ export const prerender = true;
 						</div>
 					</GlassBox>
 					<div
-						class="grid gap-3 grid-rows-3 row-span-2 col-span-1
+						class="grid gap-4 grid-rows-3 row-span-2 col-span-1
 						sm:col-span-3 sm:grid-rows-1 sm:grid-cols-3 sm:row-span-1
-						md:gap-5 md:grid-rows-1 md:grid-cols-3
-						lg:row-span-2 lg:col-span-1
-						xl:grid-cols-3 xl:grid-rows-1 xl:row-span-1 xl:col-span-1 xl:gap-6
+						md:gap-6 md:grid-rows-1 md:grid-cols-3
+						lg:row-span-1 lg:col-span-2 lg:grid-cols-3 lg:grid-rows-1
 						2xl:grid-cols-3 2xl:grid-rows-1 2xl:col-span-2 2xl:row-span-1"
 					>
-						<GlassBox class="lg:col-span-1 xl:col-span-1">
-							<div class="flex flex-col
-									xl:flex-col">
-								<span
-									class="text-font-primary text-3xl text-center
+						<GlassBox
+							class="flex flex-col justify-center items-center"
+						>
+							<span
+								class="text-font-primary text-3xl text-center
 								md:text-4xl 2xl:text-5xl"
-									>3+</span
-								>
-								<span
-									class="text-font-primary text-sm px-4 text-center
-								md:text-md 2xl:text-xl"
-									>years experience</span
-								>
-							</div>
+								>3+</span
+							>
+							<span
+								class="text-font-primary text-sm px-4 text-center
+								md:text-md 2xl:text-lg"
+								>years experience</span
+							>
 						</GlassBox>
-						<GlassBox class="justify-center"
+						<GlassBox
+							class="flex flex-col justify-center items-center"
 							><svg
-								class="h-22 w-auto opacity-90 dark:opacity-90 p-6 text-font-primary
-								sm:h-26 sm:p-6
-								md:h-28 md:p-6
-								lg:h-24 lg:p-2
-								2xl:h-28 2xl:p-6"
+								class="w-full h-24 opacity-90 dark:opacity-90 p-6 text-font-primary"
 							>
 								<use xlink:href="/sprite.svg#ucr"></use>
 							</svg>
 						</GlassBox>
-						<GlassBox>
+						<GlassBox
+							class="justify-center items-center flex flex-col"
+						>
 							<span
 								class="text-font-primary text-3xl text-center
 								md:text-4xl 2xl:text-5xl"
@@ -163,7 +159,7 @@ export const prerender = true;
 							>
 							<span
 								class="text-font-primary text-sm px-4 text-center
-								md:text-md 2xl:text-xl"
+								md:text-md 2xl:text-lg"
 								>projects</span
 							>
 						</GlassBox>
@@ -171,18 +167,16 @@ export const prerender = true;
 				</section>
 
 				<GlassBox
-					class="p-8 px-10
-					md:col-span-1 md:p-12 md:px-10
-					lg:order-1 lg:col-span-9
-					xl:col-span-10
+					class="flex flex-col justify-center items-center md:col-span-1
+					lg:order-1 lg:col-span-8
+					xl:col-span-9
 					2xl:col-span-9"
 				>
 					<div
-						class="flex flex-col justify-around items-center py-none p-4 gap-10
-						md:gap-14
+						class="flex flex-col justify-around items-center p-12 gap-10
+						md:gap-14 md:p-10
 						lg:gap-8
-						lg:p-6
-						xl:p-10
+						xl:gap-16 xl:items-center xl:p-14
 						2xl:flex-row"
 					>
 						<article
@@ -208,143 +202,140 @@ export const prerender = true;
 							</p>
 						</article>
 						<div
-							class="flex flex-col sm:flex-row md:flex-col justify-between gap-6"
+							class="flex flex-col sm:flex-row lg:flex-col justify-between gap-6"
 						>
-							<BtnBlue icon="/sprite.svg#arrow"
-								>Explore my projects
+							<BtnBlue icon="/sprite.svg#arrow" href="#projects"
+								>View projects
 							</BtnBlue>
 							<span
-								class="hidden md:block text-center text-xl text-font-secondary"
+								class="hidden 2xl:block text-center text-xl text-font-secondary"
 								>or</span
 							>
 							<BtnGeneric icon="/sprite.svg#message"
-								>Let's talk
+								>Contact me
 							</BtnGeneric>
 						</div>
 					</div>
 				</GlassBox>
 			</div>
 		</section>
-		<section id="skills" class="" aria-label="Skills">
-			<GlassBox class="md:col-span-2 lg:col-span-16 md:order-3">
-				<div
-					class="flex flex-col xl:flex-row md:items-start justify-center gap-16 xl:gap-18 xl:px-12 py-10 px-20"
-				>
-					<section class="flex-1 flex flex-col items-center">
-						<h3
-							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-						>
-							<span
-								class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-							></span>
-							Data Engineering
-						</h3>
-						<div
-							class="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-3 gap-12"
-						>
-							{
-								dataEngineering?.data.skills.map((skill) => (
-									<div class="flex flex-col">
-										<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
-											<use
-												xlink:href={`/sprite.svg#${skill.icon}`}
-											/>
-										</svg>
-										<div class="h-0">
-											<div class="relative bg-purple-500/60 dark:bg-purple-400/60 rounded-2xl w-30 h-20 bottom-20 left-0 blur-2xl -z-20" />
-										</div>
-										<span class="text-center text-sm font-semibold pt-4 h-16">
-											{skill.name}
-										</span>
-									</div>
-								))
-							}
-						</div>
-					</section>
-
-					<section class="flex-1 flex flex-col items-center">
-						<h3
-							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-						>
-							<span
-								class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"
-							></span>
-							Software Development
-						</h3>
-						<div
-							class="grid grid-cols-3 gap-12
-							sm:grid-cols-4 xl:grid-cols-3 xl:gap-8"
-						>
-							{
-								softwareDevelopment?.data.skills.map(
-									(skill) => (
-										<div class="flex flex-col">
-											<svg class="h-20 filter dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.6)] overflow-visible">
-												<use
-													xlink:href={`/sprite.svg#${skill.icon}`}
-												/>
-											</svg>
-											<div class="h-0">
-												<div class="relative bg-blue-500/30 dark:bg-blue-400/40 rounded-2xl w-28 h-15 bottom-17 left-0 blur-xl -z-20" />
-											</div>
-											<span
-												class="text-center text-sm font-semibold pt-4 h-16
-													"
-											>
-												{skill.name}
-											</span>
-										</div>
-									),
-								)
-							}
-						</div>
-					</section>
-
-					<section class="flex-1 flex flex-col items-center">
-						<h3
-							class="text-lg uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-6 flex items-center gap-2"
-						>
-							<span
-								class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(148,163,184,0.5)]"
-							></span>
-							Cloud & Infrastructure
-						</h3>
-						<div
-							class="grid gap-12 grid-cols-3 sm:grid-cols-4
-							xl:grid-cols-3 xl:gap-8"
-						>
-							{
-								cloudInfrastructure?.data.skills.map(
-									(skill) => (
-										<div class="flex flex-col">
-											<svg class="h-20 filter drop-shadow-[0_0_5px_rgba(0,186,124,0.4)] dark:drop-shadow-[0_0_6px_rgba(220,255,255,0.6)] overflow-visible">
-												<use
-													xlink:href={`/sprite.svg#${skill.icon}`}
-												/>
-											</svg>
-											<div class="h-0">
-												<div class="relative bg-emerald-400/60 dark:bg-emerald-500/45 rounded-2xl w-20 h-15 bottom-17 left-7 blur-xl -z-23" />
-											</div>
-											<span class="text-center text-sm font-semibold pt-4 h-16">
-												{skill.name}
-											</span>
-										</div>
-									),
-								)
-							}
-						</div>
-					</section>
-				</div>
-			</GlassBox>
-		</section>
-		<section class="max-w-7xl mx-auto w-full mb-12" aria-label="Projects">
+		<section
+			id="stack"
+			class="max-w-7xl mx-auto w-full pt-14"
+			aria-label="Stack"
+		>
 			<h2
-				class="text-xl md:text-2xl uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 mb-8 mt-12 flex items-center gap-2"
+				class="text-xl md:text-2xl uppercase tracking-[0.2em] text-gray-500 dark:text-slate-200 py-8 px-2 flex items-center gap-2
+				relative w-fit"
 			>
+				<div
+					class="absolute inset-0 bg-bg/40 blur-xl overflow-visible -z-10"
+				>
+				</div>
+				<span
+					class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
+				></span>
+				Stack
+			</h2>
+
+			<div
+				class="flex flex-col xl:flex-row md:items-start justify-center gap-6"
+			>
+				<GlassBox
+					class="flex-1 flex flex-col items-center p-6 text-font-primary xl:place-self-stretch"
+				>
+					<h3
+						class="font-light text-2xl tracking-wider text-font-primary mb-6 flex items-center"
+					>
+						Data Engineering
+					</h3>
+					<div class="grid grid-cols-4 gap-8">
+						{
+							dataEngineering?.data.skills.map((skill) => (
+								<div class="flex flex-col">
+									<svg class="h-20 filter drop-shadow-[0_0_4px_rgba(100,100,100,0.4)] dark:drop-shadow-[0_0_4px_rgba(255,255,255,0.6)] overflow-visible">
+										<use
+											xlink:href={`/sprite.svg#${skill.icon}`}
+										/>
+									</svg>
+									<span class="text-center text-sm font-medium pt-4 h-16">
+										{skill.name}
+									</span>
+								</div>
+							))
+						}
+					</div>
+				</GlassBox>
+
+				<GlassBox
+					class="flex-1 flex flex-col items-center p-6 text-font-primary"
+				>
+					<h3
+						class="font-light text-2xl tracking-wider text-font-primary mb-6 flex items-center"
+					>
+						Software Development
+					</h3>
+					<div class="grid grid-cols-4 gap-8">
+						{
+							softwareDevelopment?.data.skills.map((skill) => (
+								<div class="flex flex-col">
+									<svg class="h-20 filter drop-shadow-[0_0_4px_rgba(100,100,100,0.4)] dark:drop-shadow-[0_0_4px_rgba(255,255,255,0.6)] overflow-visible">
+										<use
+											xlink:href={`/sprite.svg#${skill.icon}`}
+										/>
+									</svg>
+									<span
+										class="text-center text-sm font-semibold pt-4 h-16
+													"
+									>
+										{skill.name}
+									</span>
+								</div>
+							))
+						}
+					</div>
+				</GlassBox>
+
+				<GlassBox
+					class="flex-1 flex flex-col items-center p-6 text-font-primary"
+				>
+					<h3
+						class="font-light text-2xl tracking-wider text-font-primary mb-6 flex items-center"
+					>
+						Cloud & Infrastructure
+					</h3>
+					<div class="grid gap-8 grid-cols-4">
+						{
+							cloudInfrastructure?.data.skills.map((skill) => (
+								<div class="flex flex-col">
+									<svg class="h-20 filter drop-shadow-[0_0_4px_rgba(100,100,100,0.4)] dark:drop-shadow-[0_0_4px_rgba(255,255,255,0.6)] overflow-visible">
+										<use
+											xlink:href={`/sprite.svg#${skill.icon}`}
+										/>
+									</svg>
+									<span class="text-center text-sm font-semibold pt-4 h-16">
+										{skill.name}
+									</span>
+								</div>
+							))
+						}
+					</div>
+				</GlassBox>
+			</div>
+		</section>
+		<section
+			id="projects"
+			class="max-w-7xl mx-auto w-full pt-14"
+			aria-label="Projects"
+		>
+			<h2
+				class="text-xl md:text-2xl uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300 py-8 px-2 flex items-center gap-2 relative w-fit"
+			>
+				<div class="absolute inset-0 bg-bg/40 blur-xl -z-10"></div>
 				<span
 					class="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]"
 				></span>
-				Selected Projects
+				Projects
 			</h2>
 			<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-10">
 				{
@@ -354,7 +345,7 @@ export const prerender = true;
 								<h3 class="text-3xl md:text-4xl font-bold text-font-primary">
 									{mainProject.data.title}
 								</h3>
-								<p class="mt-6 text-lg text-font-secondary flex-grow">
+								<p class="mt-6 text-lg text-font-secondary grow">
 									{mainProject.data.description}
 								</p>
 								<div class="flex flex-wrap gap-3 mt-6 mb-10">
@@ -387,7 +378,7 @@ export const prerender = true;
 									<h3 class="text-xl md:text-2xl font-bold text-font-primary">
 										{proj.data.title}
 									</h3>
-									<p class="mt-3 text-sm md:text-base text-font-secondary flex-grow line-clamp-3">
+									<p class="mt-3 text-sm md:text-base text-font-secondary grow line-clamp-3">
 										{proj.data.description}
 									</p>
 									<div class="flex flex-wrap gap-2 mt-4 mb-6">

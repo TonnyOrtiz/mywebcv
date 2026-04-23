@@ -9,6 +9,10 @@
             "icon": "aws"
         },
         {
+            "name": "GitHub",
+            "icon": "github"
+        },
+        {
             "name": "Heroku",
             "icon": "heroku"
         },
@@ -27,10 +31,6 @@
         {
             "name": "Kubernetes",
             "icon": "kubernetes"
-        },
-        {
-            "name": "Google Cloud",
-            "icon": "googlecloud"
         }
     ]
 }

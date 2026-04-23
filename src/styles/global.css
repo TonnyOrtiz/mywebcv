@@ -247,3 +247,7 @@
         transform: translateZ(-2px) scale(3);
     }
 }
+
+html {
+    scroll-behavior: smooth;
+}
