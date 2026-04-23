@@ -4,7 +4,7 @@ interface Props {
     href?: string;
 }
 
-const { icon, href = "https://www.linkedin.com/in/tonny-ortiz/" } = Astro.props;
+const { icon, href = "#contact" } = Astro.props;
 ---
 
 <a
@@ -14,7 +14,6 @@ const { icon, href = "https://www.linkedin.com/in/tonny-ortiz/" } = Astro.props;
     inset-shadow-xs inset-shadow-white/40 duration-100
     lg:w-60"
     href={href}
-    target="_blank"
     aria-label="Contact me"
     title="Contact me"
 >

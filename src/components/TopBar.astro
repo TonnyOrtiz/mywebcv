@@ -1,135 +1,252 @@
 ---
-import themeIcon from "../assets/theme.svg?raw";
+import sunIcon from "../assets/sun.svg?raw";
+import moonIcon from "../assets/moon.svg?raw";
+import autoIcon from "../assets/auto.svg?raw";
 ---
 
-<div
-    id="container"
-    class="flex flex-row w-full bg-topbar-bg fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
+<header
+    id="topbar-container"
+    class="fixed bg-topbar-bg w-full top-0 left-0 right-0 z-50 backdrop-blur-xs flex flex-col"
 >
-    <div id="logo"></div>
-    <div id="menu" class="flex w-full px-10 lg:px-12 items-center text-md">
-        <ul
-            class="flex flex-row justify-around w-full gap-8 text-font-primary text-sm"
-        >
-            <li><a href="#profile">@TonnyOrtiz</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
     <div
-        id="theme-toggle"
-        class="flex px-4 md:px-8 py-2 justify-end items-center text-font-primary relative"
+        id="container"
+        class="flex flex-row items-center max-w-7xl justify-around mx-auto px-4 py-0.5 w-full"
     >
-        <button
-            id="theme-toggle-btn"
-            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex flex-row items-center gap-2"
-            aria-label="Toggle Theme Dropdown"
-            aria-expanded="false"
-        >
-            <!-- Static Theme Settings Icon -->
-            <span
-                class="w-6 h-6 block [&>svg]:w-full [&>svg]:h-full"
-                set:html={themeIcon}
-            />
-            <span class="text-sm whitespace-nowrap hidden md:block">
-                Display Mode</span
+        <div id="logo">
+            <a href="#profile" class="font-semibold text-font-primary"
+                >@TonnyOrtiz</a
             >
-        </button>
-    </div>
+        </div>
+        <div
+            id="menu"
+            class="flex flex-1 max-w-6xl px-10 lg:px-12 items-center text-md relative"
+        >
+        </div>
 
-    <script>
-        const getSystemTheme = () =>
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+        <div
+            id="theme-toggle"
+            class="flex justify-end items-center text-font-primary relative"
+        >
+            <button
+                id="theme-toggle-btn"
+                class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex flex-row items-center gap-2
+                text-font-primary hover:cursor-pointer"
+                aria-label="Toggle Theme Dropdown"
+                aria-expanded="false"
+            >
+                <span class="text-sm whitespace-nowrap hidden"> Theme</span>
+                <span class="w-6 h-6 block [&>svg]:w-full [&>svg]:h-full">
+                    <svg>
+                        <use xlink:href={"/sprite.svg#menu"}></use>
+                    </svg>
+                </span>
+            </button>
+        </div>
 
-        const updateThemeUI = (themeSetting: string) => {
-            // 1. Update the document class
-            const isDark =
-                themeSetting === "auto"
-                    ? getSystemTheme() === "dark"
-                    : themeSetting === "dark";
-            document.documentElement.classList.toggle("dark", isDark);
+        <script>
+            const getSystemTheme = () =>
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light";
 
-            // 2. Highlight the active option in the dropdown
+            const updateThemeUI = (themeSetting: string) => {
+                // 1. Update the document class
+                const isDark =
+                    themeSetting === "auto"
+                        ? getSystemTheme() === "dark"
+                        : themeSetting === "dark";
+                document.documentElement.classList.toggle("dark", isDark);
+
+                // 2. Highlight the active option in the dropdown
+                document.querySelectorAll(".theme-option").forEach((btn) => {
+                    if (btn instanceof HTMLElement) {
+                        if (btn.dataset.theme === themeSetting) {
+                            btn.classList.add("text-accent-blue");
+                        } else {
+                            btn.classList.remove("text-accent-blue");
+                        }
+                    }
+                });
+            };
+
+            const applyTheme = (themeSetting: string) => {
+                if (!document.startViewTransition) {
+                    updateThemeUI(themeSetting);
+                } else {
+                    document.startViewTransition(() =>
+                        updateThemeUI(themeSetting),
+                    );
+                }
+
+                if (themeSetting === "auto") {
+                    localStorage.removeItem("theme");
+                    // Update theme based on system preference
+                    updateThemeUI(getSystemTheme());
+                } else {
+                    localStorage.setItem("theme", themeSetting);
+                }
+            };
+
+            // Initialize state on load
+            const initTheme =
+                typeof localStorage !== "undefined" &&
+                localStorage.getItem("theme")
+                    ? localStorage.getItem("theme")
+                    : "auto";
+            updateThemeUI(initTheme || "auto");
+
+            // Toggle dropdown
+            const toggleBtn = document.getElementById("theme-toggle-btn");
+            const dropdown = document.getElementById("dropdown-menu");
+            const header = document.getElementById("topbar-container");
+
+            const showDropdown = () => {
+                dropdown?.classList.remove(
+                    "opacity-0",
+                    "translate-y-[-10px]",
+                    "pointer-events-none",
+                );
+                dropdown?.classList.add(
+                    "opacity-100",
+                    "translate-y-0",
+                    "pointer-events-auto",
+                );
+            };
+
+            const hideDropdown = () => {
+                dropdown?.classList.remove(
+                    "opacity-100",
+                    "translate-y-0",
+                    "pointer-events-auto",
+                );
+                dropdown?.classList.add(
+                    "opacity-0",
+                    "translate-y-[-10px]",
+                    "pointer-events-none",
+                );
+            };
+
+            // Función para mostrar
+            toggleBtn?.addEventListener("mouseenter", showDropdown);
+
+            // Función para ocultar
+            header?.addEventListener("mouseleave", hideDropdown);
+
+            // Función para ocultar
+            document.querySelectorAll(".navi").forEach((link) => {
+                link.addEventListener("click", hideDropdown);
+            });
+
+            // Theme options clicks
             document.querySelectorAll(".theme-option").forEach((btn) => {
-                if (btn instanceof HTMLElement) {
-                    if (btn.dataset.theme === themeSetting) {
-                        btn.classList.add("text-accent-blue");
-                    } else {
-                        btn.classList.remove("text-accent-blue");
+                btn.addEventListener("click", (e) => {
+                    const target = e.currentTarget;
+                    if (target instanceof HTMLElement) {
+                        const selectedTheme = target.dataset.theme;
+                        if (selectedTheme) {
+                            applyTheme(selectedTheme);
+                        }
                     }
-                }
+                    hideDropdown();
+                    dropdown?.classList.remove("text-font-primary");
+                    dropdown?.classList.add("text-font-blue-500");
+                });
             });
-        };
 
-        const applyTheme = (themeSetting: string) => {
-            if (!document.startViewTransition) {
-                updateThemeUI(themeSetting);
-            } else {
-                document.startViewTransition(() => updateThemeUI(themeSetting));
-            }
-
-            if (themeSetting === "auto") {
-                localStorage.removeItem("theme");
-                // Update theme based on system preference
-                updateThemeUI(getSystemTheme());
-            } else {
-                localStorage.setItem("theme", themeSetting);
-            }
-        };
-
-        // Initialize state on load
-        const initTheme =
-            typeof localStorage !== "undefined" && localStorage.getItem("theme")
-                ? localStorage.getItem("theme")
-                : "auto";
-        updateThemeUI(initTheme || "auto");
-
-        // Toggle dropdown
-        const toggleBtn = document.getElementById("theme-toggle-btn");
-        const dropdown = document.getElementById("theme-dropdown");
-
-        toggleBtn?.addEventListener("click", (e) => {
-            e.stopPropagation();
-            dropdown?.classList.toggle("hidden");
-        });
-
-        // Click outside to close
-        document.addEventListener("click", (e) => {
-            if (
-                toggleBtn &&
-                dropdown &&
-                !(e.target instanceof Node && toggleBtn.contains(e.target)) &&
-                !(e.target instanceof Node && dropdown.contains(e.target))
-            ) {
-                dropdown.classList.add("hidden");
-            }
-        });
-
-        // Theme options clicks
-        document.querySelectorAll(".theme-option").forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-                const target = e.currentTarget;
-                if (target instanceof HTMLElement) {
-                    const selectedTheme = target.dataset.theme;
-                    if (selectedTheme) {
-                        applyTheme(selectedTheme);
+            // Listen for OS theme changes if on "auto" mode
+            window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .addEventListener("change", () => {
+                    if (!localStorage.getItem("theme")) {
+                        applyTheme("auto");
                     }
-                }
-                dropdown?.classList.add("hidden");
-            });
-        });
-
-        // Listen for OS theme changes if on "auto" mode
-        window
-            .matchMedia("(prefers-color-scheme: dark)")
-            .addEventListener("change", () => {
-                if (!localStorage.getItem("theme")) {
-                    applyTheme("auto");
-                }
-            });
-    </script>
-</div>
+                });
+        </script>
+    </div>
+    <!-- Dropdown Menu -->
+    <div
+        id="dropdown-menu"
+        class="absolute top-full right-0 mt-0 w-full z-50 backdrop-blur-xs transition-all duration-300 ease-out
+           opacity-0 translate-y-[-10px] pointer-events-none text-font-primary bg-bg
+           flex flex-col justify-center items-center py-4 px-4 md:pr-50"
+    >
+        <div
+            class="max-w-7xl w-full px-4 flex flex-row justify-around items-start gap-4"
+        >
+            <div class="flex flex-col items-start gap-4 text-font-primary">
+                <h4 class="text-font-primary">Navigation</h4>
+                <ul
+                    class="list-none flex flex-col justify-around gap-8 text-font-primary text-2xl no-underline no-decoration"
+                >
+                    <li>
+                        <a
+                            href="#profile"
+                            class="navi no-underline text-font-primary"
+                            >Profile</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#stack"
+                            class="navi no-underline text-font-primary">Stack</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#projects"
+                            class="navi no-underline text-font-primary"
+                            >Projects</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#experience"
+                            class="navi no-underline text-font-primary"
+                            >Experience</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#contact"
+                            class="navi no-underline text-font-primary"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col items-start gap-4">
+                <h4 class="text-font-primary">Display mode</h4>
+                <button
+                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-font-primary hover:cursor-pointer"
+                    data-theme="auto"
+                >
+                    <span
+                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        set:html={autoIcon}
+                    />
+                    Auto
+                </button>
+                <button
+                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left text-font-primary hover:cursor-pointer"
+                    data-theme="light"
+                >
+                    <span
+                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        set:html={sunIcon}
+                    />
+                    Light
+                </button>
+                <button
+                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left text-font-primary hover:cursor-pointer"
+                    data-theme="dark"
+                >
+                    <span
+                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        set:html={moonIcon}
+                    />
+                    Dark
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

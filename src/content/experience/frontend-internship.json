@@ -1,0 +1,11 @@
+{
+  "title": "Frontend Software Developer (Internship)",
+  "company": "UCR - ECCI",
+  "description": "Where I was a part of frontend team developing on an agile scrum team. Collaborating close with the PO, backend team, design team, following clean code guidelines and testing best practices.",
+  "methodologies": {
+    "Agile Mindset": "Scrum, Dailys, Sprint Planning.",
+    "Collaboration": "GitFlow, Peer Reviews.",
+    "Delivery": "CI/CD, Automated Testing."
+  },
+  "isMain": true
+}

@@ -8,6 +8,7 @@
 @theme {
     --background-noise: url('../assets/noise.svg');
     --color-topbar-bg: var(--topbar-bg);
+    --color-dropdown-bg: var(--dropdown-bg);
     --color-photo-bg: var(--photo-bg);
     --color-bg-accent: var(--bg-accent);
     --color-bg: var(--bg);
@@ -28,6 +29,7 @@
     --color-btn-blue: var(--btn-blue);
     --color-btn-green: var(--btn-green);
     --color-btn-red: var(--btn-red);
+    --color-input-bg: var(--input-bg);
 
     --animate-circle-x: circle-x 60s infinite ease-in-out;
     --animate-circle-y: circle-y 60s infinite ease-in-out;
@@ -62,6 +64,7 @@
 
 :root {
     --topbar-bg: rgba(255, 255, 255, 0.8);
+    --dropdown-bg: rgba(255, 255, 255, 1);
     --photo-bg: #dbb7e6;
     --bg-accent: #ebc1ff;
     --bg: #eae6fb;
@@ -91,10 +94,12 @@
             rgb(var(--accent)),
             rgb(var(--accent-light)) 30%,
             white 60%);
+    --input-bg: #FFFFFF;
 }
 
 .dark {
     --topbar-bg: rgba(0, 0, 0, 0.8);
+    --dropdown-bg: rgba(0, 0, 0, 1);
     --photo-bg: #1e0729;
     --bg-accent: #190523;
     --bg: #000000;
@@ -114,6 +119,7 @@
     --font-green: #66CB8D;
     --font-red: #CB6666;
     --font-blue: #529FC9;
+    --input-bg: #1C1C1E;
 }
 
 .social-button {
@@ -246,8 +252,4 @@
     .translate-z-neg-2 {
         transform: translateZ(-2px) scale(3);
     }
-}
-
-html {
-    scroll-behavior: smooth;
 }

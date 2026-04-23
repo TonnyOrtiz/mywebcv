@@ -2,10 +2,29 @@
 /* Background.astro */
 ---
 
-<div
-    class="fixed inset-0 -z-10 bg-[url('/bg/bgle.webp')] dark:bg-[url('/bg/bgde.webp')] bg-cover bg-top-right h-lvh w-full"
->
-    {/* Transparent overlay acting as a filter */}
-    <div class="absolute inset-0 bg-bg/50 dark:bg-black/40 backdrop-blur-[0px]">
+<div class="fixed inset-0 -z-10 overflow-hidden w-full h-screen">
+    <picture class="block dark:hidden">
+        <source srcset="/bg/light.jpg" media="(min-width: 1536px)" />
+        <img
+            src="/bg/light.jpg"
+            class="parallax-img w-full h-[130vh] object-cover absolute -top-[15vh] left-0 will-change-transform scale-125 origin-center opacity-0 transition-opacity duration-500"
+            alt="Background Light"
+            onload="this.classList.remove('opacity-0')"
+        />
+    </picture>
+
+    <picture class="hidden dark:block">
+        <source srcset="/bg/dark.jpg" media="(min-width: 1536px)" />
+        <img
+            src="/bg/dark.jpg"
+            class="parallax-img w-full h-[130vh] object-cover absolute -top-[15vh] left-0 will-change-transform scale-125 origin-center opacity-0 transition-opacity duration-500"
+            alt="Background Dark"
+            onload="this.classList.remove('opacity-0')"
+        />
+    </picture>
+
+    <div
+        class="absolute inset-0 bg-white/20 dark:bg-black/20 backdrop-blur-none"
+    >
     </div>
 </div>

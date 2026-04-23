@@ -48,3 +48,71 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+<script>
+	import Lenis from "lenis";
+
+	const lenis = new Lenis({
+		duration: 1.2,
+		easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+	});
+
+	function raf(time: number) {
+		lenis.raf(time);
+		requestAnimationFrame(raf);
+	}
+	requestAnimationFrame(raf);
+
+	(window as any).lenis = lenis;
+
+	const bgImages = document.querySelectorAll<HTMLElement>(".parallax-img");
+
+	// --- SOLUCIÓN AL BRINQUITO: FUNCIÓN CENTRALIZADA ---
+	const updateParallax = (scroll: number, limit: number) => {
+		// Evitar NaN si la página no tiene scroll suficiente
+		const progress = limit > 0 ? scroll / limit : 0;
+		const movement = window.innerWidth < 768 ? 0 : 150;
+		const yPos = progress * movement;
+
+		bgImages.forEach((img) => {
+			img.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.25)`;
+		});
+	};
+
+	// 1. EJECUCIÓN INMEDIATA (Crucial para el primer render)
+	// Usamos los valores actuales antes de que Lenis empiece
+	const init = () => {
+		const scroll = window.scrollY;
+		const limit =
+			document.documentElement.scrollHeight - window.innerHeight;
+		updateParallax(scroll, limit);
+	};
+
+	// Corremos init inmediatamente y también después de un pequeño frame
+	// para asegurar que el DOM está listo
+	init();
+	requestAnimationFrame(init);
+
+	// 2. ESCUCHAR EL SCROLL DE LENIS
+	lenis.on("scroll", ({ scroll, limit }) => {
+		updateParallax(scroll, limit);
+	});
+
+	// 3. RE-CALCULAR EN RESIZE
+	// Si cambias el tamaño de la ventana, el 'limit' cambia y la imagen saltaría
+	window.addEventListener("resize", init);
+
+	// 4. Lógica de Navegación (Hrefs)
+	document
+		.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+		.forEach((link) => {
+			link.addEventListener("click", (e) => {
+				e.preventDefault();
+				const targetId = link.getAttribute("href");
+				if (targetId) {
+					const target = document.querySelector(targetId);
+					if (target)
+						lenis.scrollTo(target as HTMLElement, { offset: -80 });
+				}
+			});
+		});
+</script>
