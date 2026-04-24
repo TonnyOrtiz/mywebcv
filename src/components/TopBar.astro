@@ -6,10 +6,11 @@ import autoIcon from "../assets/auto.svg?raw";
 
 <header
     id="topbar-container"
-    class="fixed bg-topbar-bg w-full top-0 left-0 right-0 z-50 backdrop-blur-xs flex flex-col"
+    class="fixed bg-topbar-bg w-full top-0 left-0 right-0 z-50 backdrop-blur-xs flex flex-col
+    transition-all duration-300 ease-out"
 >
     <div
-        id="container"
+        id="topbar"
         class="flex flex-row items-center max-w-7xl justify-around mx-auto px-4 py-0.5 w-full"
     >
         <div id="logo">
@@ -24,11 +25,11 @@ import autoIcon from "../assets/auto.svg?raw";
         </div>
 
         <div
-            id="theme-toggle"
+            id="menu-toggle"
             class="flex justify-end items-center text-font-primary relative"
         >
             <button
-                id="theme-toggle-btn"
+                id="menu-toggle-btn"
                 class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex flex-row items-center gap-2
                 text-font-primary hover:cursor-pointer"
                 aria-label="Toggle Theme Dropdown"
@@ -42,141 +43,21 @@ import autoIcon from "../assets/auto.svg?raw";
                 </span>
             </button>
         </div>
-
-        <script>
-            const getSystemTheme = () =>
-                window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                    : "light";
-
-            const updateThemeUI = (themeSetting: string) => {
-                // 1. Update the document class
-                const isDark =
-                    themeSetting === "auto"
-                        ? getSystemTheme() === "dark"
-                        : themeSetting === "dark";
-                document.documentElement.classList.toggle("dark", isDark);
-
-                // 2. Highlight the active option in the dropdown
-                document.querySelectorAll(".theme-option").forEach((btn) => {
-                    if (btn instanceof HTMLElement) {
-                        if (btn.dataset.theme === themeSetting) {
-                            btn.classList.add("text-accent-blue");
-                        } else {
-                            btn.classList.remove("text-accent-blue");
-                        }
-                    }
-                });
-            };
-
-            const applyTheme = (themeSetting: string) => {
-                if (!document.startViewTransition) {
-                    updateThemeUI(themeSetting);
-                } else {
-                    document.startViewTransition(() =>
-                        updateThemeUI(themeSetting),
-                    );
-                }
-
-                if (themeSetting === "auto") {
-                    localStorage.removeItem("theme");
-                    // Update theme based on system preference
-                    updateThemeUI(getSystemTheme());
-                } else {
-                    localStorage.setItem("theme", themeSetting);
-                }
-            };
-
-            // Initialize state on load
-            const initTheme =
-                typeof localStorage !== "undefined" &&
-                localStorage.getItem("theme")
-                    ? localStorage.getItem("theme")
-                    : "auto";
-            updateThemeUI(initTheme || "auto");
-
-            // Toggle dropdown
-            const toggleBtn = document.getElementById("theme-toggle-btn");
-            const dropdown = document.getElementById("dropdown-menu");
-            const header = document.getElementById("topbar-container");
-
-            const showDropdown = () => {
-                dropdown?.classList.remove(
-                    "opacity-0",
-                    "translate-y-[-10px]",
-                    "pointer-events-none",
-                );
-                dropdown?.classList.add(
-                    "opacity-100",
-                    "translate-y-0",
-                    "pointer-events-auto",
-                );
-            };
-
-            const hideDropdown = () => {
-                dropdown?.classList.remove(
-                    "opacity-100",
-                    "translate-y-0",
-                    "pointer-events-auto",
-                );
-                dropdown?.classList.add(
-                    "opacity-0",
-                    "translate-y-[-10px]",
-                    "pointer-events-none",
-                );
-            };
-
-            // Función para mostrar
-            toggleBtn?.addEventListener("mouseenter", showDropdown);
-
-            // Función para ocultar
-            header?.addEventListener("mouseleave", hideDropdown);
-
-            // Función para ocultar
-            document.querySelectorAll(".navi").forEach((link) => {
-                link.addEventListener("click", hideDropdown);
-            });
-
-            // Theme options clicks
-            document.querySelectorAll(".theme-option").forEach((btn) => {
-                btn.addEventListener("click", (e) => {
-                    const target = e.currentTarget;
-                    if (target instanceof HTMLElement) {
-                        const selectedTheme = target.dataset.theme;
-                        if (selectedTheme) {
-                            applyTheme(selectedTheme);
-                        }
-                    }
-                    hideDropdown();
-                    dropdown?.classList.remove("text-font-primary");
-                    dropdown?.classList.add("text-font-blue-500");
-                });
-            });
-
-            // Listen for OS theme changes if on "auto" mode
-            window
-                .matchMedia("(prefers-color-scheme: dark)")
-                .addEventListener("change", () => {
-                    if (!localStorage.getItem("theme")) {
-                        applyTheme("auto");
-                    }
-                });
-        </script>
     </div>
     <!-- Dropdown Menu -->
     <div
         id="dropdown-menu"
-        class="absolute top-full right-0 mt-0 w-full z-50 backdrop-blur-xs transition-all duration-300 ease-out
+        class="absolute top-full right-0 left-0 mt-0 w-full z-50 backdrop-blur-xs transition-all duration-300 ease-out
            opacity-0 translate-y-[-10px] pointer-events-none text-font-primary bg-bg
-           flex flex-col justify-center items-center py-4 px-4 md:pr-50"
+           flex flex-col justify-center items-center py-4 px-4"
     >
         <div
-            class="max-w-7xl w-full px-4 flex flex-row justify-around items-start gap-4"
+            class="max-w-7xl w-full px-4 flex flex-row justify-between md:justify-start items-start gap-40"
         >
             <div class="flex flex-col items-start gap-4 text-font-primary">
-                <h4 class="text-font-primary">Navigation</h4>
+                <h4 class="text-font-secondary text-sm">Navigation</h4>
                 <ul
-                    class="list-none flex flex-col justify-around gap-8 text-font-primary text-2xl no-underline no-decoration"
+                    class="list-none flex flex-col justify-around gap-4 pb-8 text-font-primary text-2xl no-underline no-decoration"
                 >
                     <li>
                         <a
@@ -215,33 +96,33 @@ import autoIcon from "../assets/auto.svg?raw";
                 </ul>
             </div>
             <div class="flex flex-col items-start gap-4">
-                <h4 class="text-font-primary">Display mode</h4>
+                <h4 class="text-font-secondary text-sm">Display mode</h4>
                 <button
-                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-font-primary hover:cursor-pointer"
+                    class="text-md theme-option rounded-lg flex justify-start items-center gap-3 transition-colors text-font-primary hover:cursor-pointer"
                     data-theme="auto"
                 >
                     <span
-                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full transition-colors"
                         set:html={autoIcon}
                     />
                     Auto
                 </button>
                 <button
-                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left text-font-primary hover:cursor-pointer"
+                    class="text-md theme-option rounded-lg flex justify-start items-center gap-3 transition-colors text-font-primary hover:cursor-pointer"
                     data-theme="light"
                 >
                     <span
-                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
                         set:html={sunIcon}
                     />
                     Light
                 </button>
                 <button
-                    class="text-lg theme-option w-full rounded-lg flex justify-start items-center gap-3 py-3 hover:bg-white dark:hover:bg-slate-800 transition-colors text-left text-font-primary hover:cursor-pointer"
+                    class="text-md theme-option rounded-lg flex justify-start items-center gap-3 transition-colors text-font-primary hover:cursor-pointer"
                     data-theme="dark"
                 >
                     <span
-                        class="w-6 h-6 [&>svg]:w-full [&>svg]:h-full"
+                        class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full"
                         set:html={moonIcon}
                     />
                     Dark
@@ -249,4 +130,132 @@ import autoIcon from "../assets/auto.svg?raw";
             </div>
         </div>
     </div>
+    <script>
+        const getSystemTheme = () =>
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+
+        const updateThemeUI = (themeSetting: string) => {
+            // 1. Update the document class
+            const isDark =
+                themeSetting === "auto"
+                    ? getSystemTheme() === "dark"
+                    : themeSetting === "dark";
+            document.documentElement.classList.toggle("dark", isDark);
+
+            // 2. Highlight the active option in the dropdown
+            document.querySelectorAll(".theme-option").forEach((btn) => {
+                if (btn instanceof HTMLElement) {
+                    if (btn.dataset.theme === themeSetting) {
+                        btn.classList.add("text-accent-blue");
+                        btn.classList.remove("text-font-primary");
+                    } else {
+                        btn.classList.remove("text-accent-blue");
+                        btn.classList.add("text-font-primary");
+                    }
+                }
+            });
+        };
+
+        const applyTheme = (themeSetting: string) => {
+            if (!document.startViewTransition) {
+                updateThemeUI(themeSetting);
+            } else {
+                document.startViewTransition(() => updateThemeUI(themeSetting));
+            }
+
+            if (themeSetting === "auto") {
+                localStorage.removeItem("theme");
+                // Update theme based on system preference
+                updateThemeUI(getSystemTheme());
+            } else {
+                localStorage.setItem("theme", themeSetting);
+            }
+        };
+
+        // Initialize state on load
+        const initTheme =
+            typeof localStorage !== "undefined" && localStorage.getItem("theme")
+                ? localStorage.getItem("theme")
+                : "auto";
+        updateThemeUI(initTheme || "auto");
+
+        // Toggle dropdown
+        const toggleBtn = document.getElementById("menu-toggle-btn");
+        const dropdown = document.getElementById("dropdown-menu");
+        const header = document.getElementById("topbar-container");
+        let isDropdownOpen: boolean = false;
+
+        const showDropdown = () => {
+            dropdown?.classList.remove(
+                "opacity-0",
+                "translate-y-[-10px]",
+                "pointer-events-none",
+            );
+            dropdown?.classList.add(
+                "opacity-100",
+                "translate-y-0",
+                "pointer-events-auto",
+            );
+            isDropdownOpen = true;
+            header?.classList.remove("bg-topbar-bg");
+            header?.classList.add("bg-bg");
+        };
+
+        const hideDropdown = () => {
+            dropdown?.classList.remove(
+                "opacity-100",
+                "translate-y-0",
+                "pointer-events-auto",
+            );
+            dropdown?.classList.add(
+                "opacity-0",
+                "translate-y-[-10px]",
+                "pointer-events-none",
+            );
+            isDropdownOpen = false;
+            header?.classList.remove("bg-bg");
+            header?.classList.add("bg-topbar-bg");
+        };
+
+        toggleBtn?.addEventListener("click", (e) => {
+            if (isDropdownOpen) {
+                hideDropdown();
+            } else {
+                showDropdown();
+            }
+        });
+
+        // Función para ocultar
+        header?.addEventListener("mouseleave", hideDropdown);
+
+        // Función para ocultar
+        document.querySelectorAll(".navi").forEach((link) => {
+            link.addEventListener("click", hideDropdown);
+        });
+
+        // Theme options clicks
+        document.querySelectorAll(".theme-option").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const target = e.currentTarget;
+                if (target instanceof HTMLElement) {
+                    const selectedTheme = target.dataset.theme;
+                    if (selectedTheme) {
+                        applyTheme(selectedTheme);
+                    }
+                }
+                hideDropdown();
+            });
+        });
+
+        // Listen for OS theme changes if on "auto" mode
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", () => {
+                if (!localStorage.getItem("theme")) {
+                    applyTheme("auto");
+                }
+            });
+    </script>
 </header>

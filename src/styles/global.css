@@ -65,14 +65,14 @@
 :root {
     --topbar-bg: rgba(255, 255, 255, 0.8);
     --dropdown-bg: rgba(255, 255, 255, 1);
-    --photo-bg: #dbb7e6;
+    --photo-bg: #A6A9DC;
     --bg-accent: #ebc1ff;
-    --bg: #eae6fb;
+    --bg: #f5f3ff;
     --mg: rgb(243, 233, 252);
     --test: #0c0d0fe6;
     --fg: #F6F6F6;
     --col-font-primary: #222a31;
-    --col-font-secondary: #3e3e3e;
+    --col-font-secondary: #565656;
     --col-font-tertiary: #595959;
     --accent-pink: #ebc1ff;
     --accent-violet: rgb(197, 125, 249);
@@ -100,7 +100,7 @@
 .dark {
     --topbar-bg: rgba(0, 0, 0, 0.8);
     --dropdown-bg: rgba(0, 0, 0, 1);
-    --photo-bg: #1e0729;
+    --photo-bg: #020100;
     --bg-accent: #190523;
     --bg: #000000;
     --mg: #101010;

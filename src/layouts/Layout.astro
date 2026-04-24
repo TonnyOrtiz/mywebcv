@@ -41,7 +41,7 @@ const { title } = Astro.props;
 			}
 		</script>
 	</head>
-	<body class="bg-bg min-h-dvh flex flex-col items-center">
+	<body class="bg-photo-bg min-h-dvh flex flex-col items-center">
 		<Background />
 		<TopBar />
 		<ThemePopup />
@@ -70,8 +70,8 @@ const { title } = Astro.props;
 	const updateParallax = (scroll: number, limit: number) => {
 		// Evitar NaN si la página no tiene scroll suficiente
 		const progress = limit > 0 ? scroll / limit : 0;
-		const movement = window.innerWidth < 768 ? 0 : 150;
-		const yPos = progress * movement;
+		const movement = window.innerWidth < 768 ? 120 : 150;
+		const yPos = progress * movement * -1;
 
 		bgImages.forEach((img) => {
 			img.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.25)`;
