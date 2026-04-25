@@ -1,0 +1,66 @@
+---
+import SectTitle from "../components/common/SectTitle.astro";
+import GlassBox from "../components/container/GlassBox.astro";
+import { getCollection } from "astro:content";
+const allExperiences = await getCollection("experience");
+const mainExperience = allExperiences.find((e) => e.data.isMain);
+---
+
+<section
+    id="experience"
+    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-30"
+    aria-label="Experience"
+>
+    <SectTitle title="Experience" />
+
+    <div
+        class="flex flex-col xl:flex-row md:items-stretch justify-center gap-6 md:gap-6"
+    >
+        {
+            allExperiences.slice(0, 2).map((exp) => (
+                <GlassBox
+                    class="flex-1 p-6 md:p-8 flex flex-col items-start xl:place-self-stretch min-h-[250px]
+						lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+                >
+                    <h3 class="text-2xl font-bold text-font-primary">
+                        {exp.data.title}
+                    </h3>
+                    <h4 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mt-2">
+                        {exp.data.company}
+                    </h4>
+                    <p class="mt-4 text-base text-font-secondary grow leading-relaxed">
+                        {exp.data.description}
+                    </p>
+                </GlassBox>
+            ))
+        }
+
+        <GlassBox
+            class="flex-1 p-6 md:p-8 flex flex-col items-start xl:place-self-stretch min-h-[250px]
+					lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+        >
+            <h3
+                class="font-light text-2xl tracking-wider text-font-primary mb-6 flex items-center w-full"
+            >
+                Workflow
+            </h3>
+            <div class="flex flex-col gap-4 w-full">
+                {
+                    mainExperience &&
+                        Object.entries(mainExperience.data.methodologies).map(
+                            ([key, value]) => (
+                                <div class="flex flex-col w-full border-b border-gray-200/20 dark:border-white/10 last:border-0 pb-3 last:pb-0">
+                                    <h4 class="text-md md:text-lg font-bold text-font-primary mb-1">
+                                        {key}
+                                    </h4>
+                                    <p class="text-sm text-font-secondary">
+                                        {value}
+                                    </p>
+                                </div>
+                            ),
+                        )
+                }
+            </div>
+        </GlassBox>
+    </div>
+</section>

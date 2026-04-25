@@ -1,0 +1,121 @@
+---
+import SectTitle from "../components/common/SectTitle.astro";
+import GlassBox from "../components/container/GlassBox.astro";
+---
+
+<section
+    id="contact"
+    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-50"
+    aria-label="Contact"
+>
+    <SectTitle title="Contact" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- CV Box -->
+        <a
+            href="/resume.pdf"
+            target="_blank"
+            class="order-1 lg:order-2 lg:col-span-1 group/cv block outline-none"
+        >
+            <GlassBox
+                class="h-full p-8 flex flex-col justify-center items-center gap-4 transition-colors group-hover/cv:bg-white/10 dark:group-hover/cv:bg-white/5 min-h-[160px]
+						lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+            >
+                <svg
+                    class="w-12 h-12 text-font-primary group-hover/cv:text-blue-400 group-hover/cv:scale-110 transition-all duration-300"
+                >
+                    <use xlink:href="/sprite.svg#document"></use>
+                </svg>
+                <span
+                    class="font-bold text-lg tracking-widest text-font-primary group-hover/cv:text-blue-400 transition-colors"
+                >
+                    DOWNLOAD RESUME
+                </span>
+            </GlassBox>
+        </a>
+
+        <!-- Form Box -->
+        <GlassBox
+            class="order-2 lg:order-1 lg:col-span-2 lg:row-span-2 p-8 md:p-12 flex flex-col justify-center min-h-[350px]
+					lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+        >
+            <h3 class="text-2xl md:text-3xl font-bold text-font-primary mb-8">
+                Let's work together
+            </h3>
+            <form action="#" class="flex flex-col gap-5">
+                <div class="flex flex-col md:flex-row gap-5">
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        class="w-full bg-input-bg border border-white/15 rounded-xl px-5 py-4 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-font-primary placeholder-gray-500"
+                        required
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        class="w-full bg-input-bg border border-white/15 rounded-xl px-5 py-4 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-font-primary placeholder-gray-500"
+                        required
+                    />
+                </div>
+                <textarea
+                    placeholder="Message"
+                    rows="4"
+                    class="w-full bg-input-bg border border-white/15 rounded-xl px-5 py-4 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-font-primary placeholder-gray-500 resize-none"
+                    required></textarea>
+                <div class="mt-4 self-center md:self-start w-full md:w-auto">
+                    <button
+                        type="submit"
+                        class="group/btn-blue bg-blue-600 dark:bg-blue-600 px-6 py-4 rounded-xl shadow-glow-sm dark:shadow-glow-md shadow-blue-400/80 hover:scale-105 transition-transform w-full md:w-60 text-center relative inset-shadow-sm inset-shadow-white/30 duration-100 border-0 outline-none cursor-pointer flex justify-center items-center"
+                    >
+                        <span
+                            class="font-semibold tracking-wider font-sans text-sm lg:text-base text-white inline-flex flex-row items-center justify-center gap-2 uppercase"
+                        >
+                            <span class="transition-all">Send Message</span>
+                            <svg
+                                width="18"
+                                height="18"
+                                class="blue-btn-icon group-hover/btn-blue:translate-x-2 transition-transform duration-100"
+                            >
+                                <use xlink:href="/sprite.svg#message"></use>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </GlassBox>
+
+        <!-- Socials Box -->
+        <GlassBox
+            class="order-3 lg:order-3 lg:col-span-1 p-8 flex flex-col justify-center items-center gap-6 min-h-[160px]
+					lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+        >
+            <div class="flex flex-row gap-6 justify-center">
+                <a
+                    class="bg-transparent hover:scale-110 transition-transform text-font-primary hover:text-blue-500"
+                    href="https://github.com/TonnyOrtiz"
+                    target="_blank"
+                    aria-label="GitHub"
+                    title="Ir a GitHub de Tonny"
+                >
+                    <svg width="35" height="35">
+                        <use xlink:href="/sprite.svg#github"></use>
+                    </svg>
+                </a>
+                <a
+                    class="bg-transparent hover:scale-110 transition-transform text-font-primary hover:text-blue-500"
+                    href="https://www.linkedin.com/in/tonny-ortiz/"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                    title="Ir a LinkedIn de Tonny"
+                >
+                    <svg width="35" height="35">
+                        <use xlink:href="/sprite.svg#linkedin"></use>
+                    </svg>
+                </a>
+            </div>
+            <span class="text-sm font-medium text-font-secondary text-center">
+                Based in San José, Costa Rica 🇨🇷
+            </span>
+        </GlassBox>
+    </div>
+</section>

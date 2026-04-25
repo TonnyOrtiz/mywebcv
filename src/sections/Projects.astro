@@ -1,0 +1,90 @@
+---
+import { getCollection } from "astro:content";
+import SectTitle from "../components/common/SectTitle.astro";
+import GlassBox from "../components/container/GlassBox.astro";
+import BtnGeneric from "../components/btn/Generic.astro";
+import BtnBlue from "../components/btn/Blue.astro";
+
+const allProjects = await getCollection("projects");
+const mainProject = allProjects.find((p) => p.data.isMain);
+const secondaryProjects = allProjects.filter((p) => !p.data.isMain).slice(0, 3);
+---
+
+<section
+    id="projects"
+    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-30"
+    aria-label="Projects"
+>
+    <SectTitle title="Projects" />
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-10">
+        {
+            mainProject && (
+                <GlassBox
+                    class="xl:col-span-2 p-8 md:p-12 flex flex-col justify-between h-full min-h-[400px]
+						lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_entry_50%]"
+                >
+                    <div class="flex flex-col h-full items-start">
+                        <h3 class="text-3xl md:text-4xl font-bold text-font-primary">
+                            {mainProject.data.title}
+                        </h3>
+                        <p class="mt-6 text-lg text-font-secondary grow">
+                            {mainProject.data.description}
+                        </p>
+                        <div class="flex flex-wrap gap-3 mt-6 mb-10">
+                            {mainProject.data.tags.map((tag: string) => (
+                                <span class="px-3 py-1 bg-white/20 dark:bg-white/10 rounded-full text-sm text-font-primary shadow-sm font-medium">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                        <div class="mt-auto">
+                            <BtnBlue
+                                icon="/sprite.svg#arrow"
+                                href={mainProject.data.link}
+                            >
+                                Check Out
+                            </BtnBlue>
+                        </div>
+                    </div>
+                </GlassBox>
+            )
+        }
+
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-1 gap-6 md:gap-10 xl:col-span-1"
+        >
+            {
+                secondaryProjects.map((proj) => (
+                    <GlassBox
+                        class="p-6 md:p-8 flex flex-col justify-between h-full min-h-[250px]
+							lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_5%_contain_30%]"
+                    >
+                        <div class="flex flex-col h-full items-start">
+                            <h3 class="text-xl md:text-2xl font-bold text-font-primary">
+                                {proj.data.title}
+                            </h3>
+                            <p class="mt-3 text-sm md:text-base text-font-secondary grow line-clamp-3">
+                                {proj.data.description}
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-4 mb-6">
+                                {proj.data.tags.map((tag: any) => (
+                                    <span class="px-2 py-1 bg-white/20 dark:bg-white/10 rounded-full text-xs text-font-primary shadow-sm">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <div class="mt-auto">
+                                <BtnGeneric
+                                    icon="/sprite.svg#arrow"
+                                    href={proj.data.link}
+                                >
+                                    Go to
+                                </BtnGeneric>
+                            </div>
+                        </div>
+                    </GlassBox>
+                ))
+            }
+        </div>
+    </div>
+</section>

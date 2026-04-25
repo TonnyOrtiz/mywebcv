@@ -1,0 +1,183 @@
+---
+import SectTitle from "../components/common/SectTitle.astro";
+import GlassBox from "../components/container/GlassBox.astro";
+import Socials from "../components/Socials.astro";
+import BtnBlue from "../components/btn/Blue.astro";
+import BtnGeneric from "../components/btn/Generic.astro";
+---
+
+<section
+    id="profile"
+    class="max-w-352 mx-auto w-full flex flex-col justify-center
+			lg:min-h-screen lg:pb-30"
+    aria-label="Profile"
+>
+    <SectTitle title="Profile" />
+    <div id="scroller" class="grid grid-cols-1
+				gap-6
+				lg:grid-cols-16">
+        <section
+            id="personalSubsection"
+            class="grid gap-4 grid-cols-3 grid-rows-2 grid-flow-col
+					sm:grid-flow-row
+					md:gap-6
+					lg:order-2 lg:grid-rows-3 lg:grid-cols-2 lg:col-span-8
+					xl:grid-rows-3 xl:grid-cols-2 xl:col-span-7
+					2xl:grid-cols-2 2xl:grid-rows-3"
+        >
+            <GlassBox
+                class="bg-[url(/src/assets/profile/purple.webp)] bg-cover bg-top
+						contrast-115 brightness-105 dark:brightness-90 dark:contrast-120
+						col-span-2
+						sm:col-span-1
+						md:row-span-1 md:col-span-1
+						lg:row-span-2 lg:col-span-1 lg:animate-blurred-fade-in lg:animate-duration-300 ease-in lg:animate-delay-000
+						2xl:row-span-2 2xl:col-span-1"
+            />
+            <GlassBox
+                class="flex flex-col justify-center items-center col-span-2
+						sm:col-span-2
+						md:row-span-1 md:col-span-2
+						lg:p-0 lg:row-span-2 lg:col-span-1 lg:animate-blurred-fade-in lg:animate-duration-300 ease-in lg:animate-delay-100
+						2xl:row-span-2 2xl:col-span-1"
+            >
+                <div
+                    class="flex flex-col flex-1 justify-center items-center py-none
+							sm:flex-row sm:justify-center sm:items-center
+							lg:flex-col lg:gap-0 lg:items-center
+							2xl:justify-center 2xl:items-center"
+                >
+                    <article
+                        class="flex flex-col flex-3 justify-center items-center prose prose-sm py-2
+								sm:p-6 sm:items-start
+								lg:flex-1 lg:py-4 lg:prose-base lg:items-center lg:pb-0
+								xl:prose-lg
+								2xl:flex-3"
+                    >
+                        <h3
+                            class="font-semibold text-font-primary mb-0 pb-0 md:pl-0"
+                        >
+                            @TonnyOrtiz
+                        </h3>
+                        <span
+                            class="md:pl-0 text-font-primary whitespace-nowrap
+								text-center"
+                        >
+                            B.S. in Computer Science
+                        </span>
+                        <span
+                            class="md:pl-0 text-font-primary whitespace-nowrap
+								text-center"
+                        >
+                            Guanacaste, CR 🇨🇷
+                        </span>
+                    </article>
+                    <div class="pb-2
+								sm:pr-6
+								md:pb-0
+								lg:pb-6 lg:pr-0
+								2xl:pb-10">
+                        <Socials />
+                    </div>
+                </div>
+            </GlassBox>
+            <div
+                class="grid gap-4 grid-rows-3 row-span-2 col-span-1
+						sm:col-span-3 sm:grid-rows-1 sm:grid-cols-3 sm:row-span-1
+						md:gap-6 md:grid-rows-1 md:grid-cols-3
+						lg:row-span-1 lg:col-span-2 lg:grid-cols-3 lg:grid-rows-1
+						2xl:grid-cols-3 2xl:grid-rows-1 2xl:col-span-2 2xl:row-span-1"
+            >
+                <GlassBox
+                    class="flex flex-col justify-center items-center
+							lg:animate-blurred-fade-in lg:animate-duration-300 ease-in lg:animate-delay-100"
+                >
+                    <span
+                        class="text-font-primary text-3xl text-center
+								md:text-4xl 2xl:text-5xl"
+                        >3+</span
+                    >
+                    <span
+                        class="text-font-primary text-sm px-4 text-center
+								md:text-md 2xl:text-lg"
+                        >years experience</span
+                    >
+                </GlassBox>
+                <GlassBox
+                    class="flex flex-col justify-center items-center
+							lg:animate-blurred-fade-in lg:animate-duration-300 ease-in lg:animate-delay-150"
+                    ><svg
+                        class="w-full h-24 opacity-90 dark:opacity-90 p-6 text-font-primary"
+                    >
+                        <use xlink:href="/sprite.svg#ucr"></use>
+                    </svg>
+                </GlassBox>
+                <GlassBox
+                    class="justify-center items-center flex flex-col
+							lg:animate-blurred-fade-in lg:animate-duration-300 ease-in lg:animate-delay-200"
+                >
+                    <span
+                        class="text-font-primary text-3xl text-center
+								md:text-4xl 2xl:text-5xl"
+                        >4+</span
+                    >
+                    <span
+                        class="text-font-primary text-sm px-4 text-center
+								md:text-md 2xl:text-lg"
+                        >projects</span
+                    >
+                </GlassBox>
+            </div>
+        </section>
+
+        <GlassBox
+            class="flex flex-col justify-center items-center md:col-span-1
+					lg:order-1 lg:col-span-8 lg:animate-blurred-fade-in lg:animate-duration-400 ease-in lg:animate-delay-150
+					xl:col-span-9
+					2xl:col-span-9"
+        >
+            <div
+                class="flex flex-col justify-around items-center p-12 gap-10
+						md:gap-14 md:p-10
+						lg:gap-8
+						xl:gap-16 xl:items-center xl:p-14
+						2xl:flex-col"
+            >
+                <article
+                    class="prose prose-sm text-font-primary
+							md:prose-base
+							lg:prose-lg
+							xl:prose-lg"
+                >
+                    <h1 class="text-blue-900 font-semibold dark:text-blue-300">
+                        Full Stack Engineer
+                    </h1>
+                    <h3 class="text-font-primary">
+                        With a Data Engineering heart & UX soul
+                    </h3>
+                    <p class="text-font-secondary">
+                        I don&apos;t just move data. I build the systems that
+                        make it valuable. Specialized in scalable pipelines and
+                        distributed architectures, with the technical edge to
+                        transform backend complexity into exceptional analytical
+                        interfaces.
+                    </p>
+                </article>
+                <div
+                    class="flex flex-col sm:flex-row lg:flex-col justify-between gap-6"
+                >
+                    <BtnBlue icon="/sprite.svg#arrow" href="#projects"
+                        >View projects
+                    </BtnBlue>
+                    <span
+                        class="hidden 2xl:block text-center text-xl text-font-secondary"
+                        >or</span
+                    >
+                    <BtnGeneric icon="/sprite.svg#message" href="#contact"
+                        >Contact me
+                    </BtnGeneric>
+                </div>
+            </div>
+        </GlassBox>
+    </div>
+</section>
