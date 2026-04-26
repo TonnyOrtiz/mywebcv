@@ -1,0 +1,11 @@
+{
+    "title": "Assistants Manager",
+    "description": "Real-time analytics dashboard with React and WebSockets, visualizing complex metrics intuitively.",
+    "link": "https://github.com/tonnyortiz/analytics-dashboard",
+    "tags": [
+        "Frontend",
+        "NextJS",
+        "TypeScript",
+        "Bootstrap"
+    ]
+}

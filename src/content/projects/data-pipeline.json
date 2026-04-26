@@ -1,7 +1,15 @@
 {
-  "title": "Enterprise Data Pipeline",
-  "description": "A highly scalable data ingestion pipeline built with Apache Spark and Kafka. It processes over 10TB of event data daily with sub-second latency, providing real-time analytics to the dashboard.",
-  "link": "https://github.com/tonnyortiz/data-pipeline",
-  "tags": ["Data Engineering", "Apache Spark", "Kafka", "Python"],
+  "title": "Crimes in US Cities Data Pipeline",
+  "description": "A highly scalable data ingestion pipeline built with Apache Spark and Druid. As a proof of concept it processes(ETL) over 10GB(raw data) of events data from multiple cities allowing subsecuent analitycs. Orchestrated with Apache Airflow and consumed in Apache Superset.",
+  "link": "https://github.com/TonnyOrtiz/DataPipeline",
+  "tags": [
+    "Data Engineering",
+    "Apache Spark",
+    "Druid",
+    "Apache Superset",
+    "Apache Airflow",
+    "Python"
+  ],
+  "img": "/img/dataPipeline.png",
   "isMain": true
 }

@@ -2,12 +2,18 @@
 interface Props {
     icon?: string;
     href?: string;
+    newWindow?: boolean;
 }
 
-const { icon, href = "#profile" } = Astro.props;
+const { icon, href = "#profile", newWindow = false } = Astro.props;
 ---
 
-<a class="" href={href} aria-label="Contact me" title="Contact me">
+<a
+    aria-label="Contact me"
+    title="Contact me"
+    href={href}
+    {...newWindow ? { target: "_blank" } : {}}
+>
     <div
         class="group/btn-blue bg-blue-600 dark:bg-blue-600 px-4 py-4 rounded-xl
     shadow-glow-sm dark:shadow-glow-md shadow-blue-400/80 hover:scale-105 transition-transform w-60 text-center relative

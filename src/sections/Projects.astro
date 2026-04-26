@@ -25,6 +25,10 @@ const secondaryProjects = allProjects.filter((p) => !p.data.isMain).slice(0, 3);
                         <h3 class="text-3xl md:text-4xl font-bold text-font-primary grow">
                             {mainProject.data.title}
                         </h3>
+                        <img
+                            src={mainProject.data.img}
+                            alt={mainProject.data.title}
+                        />
                         <p class="mt-6 text-lg text-font-secondary">
                             {mainProject.data.description}
                         </p>
@@ -39,6 +43,7 @@ const secondaryProjects = allProjects.filter((p) => !p.data.isMain).slice(0, 3);
                             <BtnBlue
                                 icon="/sprite.svg#arrow"
                                 href={mainProject.data.link}
+                                newWindow={true}
                             >
                                 Check Out
                             </BtnBlue>

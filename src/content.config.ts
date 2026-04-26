@@ -44,6 +44,7 @@ const projects = defineCollection({
         link: z.string(),
         tags: z.array(z.string()),
         isMain: z.boolean().optional(),
+        img: z.string().optional(),
     }),
 });
 
@@ -55,6 +56,7 @@ const experience = defineCollection({
     schema: z.object({
         title: z.string(),
         company: z.string(),
+        time: z.string(),
         description: z.string(),
         methodologies: z.record(z.string(), z.string()),
         isMain: z.boolean().optional(),

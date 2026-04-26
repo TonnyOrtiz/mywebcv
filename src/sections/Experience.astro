@@ -19,9 +19,14 @@ const mainExperience = allExperiences.find((e) => e.data.isMain);
                     <h3 class="text-2xl font-bold text-font-primary">
                         {exp.data.title}
                     </h3>
-                    <h4 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mt-2">
-                        {exp.data.company}
-                    </h4>
+                    <div class="flex flex-row justify-between items-center mt-2 gap-6">
+                        <h4 class="text-lg font-semibold text-blue-600 dark:text-blue-400">
+                            {exp.data.company}
+                        </h4>
+                        <span class="text-lg text-font-secondary">
+                            {exp.data.time}
+                        </span>
+                    </div>
                     <p class="mt-4 text-base text-font-secondary grow leading-relaxed">
                         {exp.data.description}
                     </p>
