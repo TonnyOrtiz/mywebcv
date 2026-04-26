@@ -1,6 +1,6 @@
 ---
-import SectTitle from "../components/common/SectTitle.astro";
 import GlassBox from "../components/container/GlassBox.astro";
+import Section from "../components/common/Section.astro";
 import { getEntry } from "astro:content";
 
 const dataEngineering = await getEntry("categories", "dataengineering");
@@ -8,13 +8,7 @@ const softwareDevelopment = await getEntry("categories", "softwaredevelopment");
 const cloudInfrastructure = await getEntry("categories", "cloudinfrastructure");
 ---
 
-<section
-    id="stack"
-    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-20"
-    aria-label="Stack"
->
-    <SectTitle title="Stack" />
-
+<Section title="Stack" class="lg:pb-20">
     <div class="flex flex-col xl:flex-row md:items-start justify-center gap-6">
         <GlassBox
             class="flex-1 flex flex-col items-center p-6 text-font-primary xl:place-self-stretch
@@ -94,4 +88,4 @@ const cloudInfrastructure = await getEntry("categories", "cloudinfrastructure");
             </div>
         </GlassBox>
     </div>
-</section>
+</Section>

@@ -1,15 +1,9 @@
 ---
-import SectTitle from "../components/common/SectTitle.astro";
 import GlassBox from "../components/container/GlassBox.astro";
+import Section from "../components/common/Section.astro";
 ---
 
-<section
-    id="contact"
-    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-50"
-    aria-label="Contact"
->
-    <SectTitle title="Contact" />
-
+<Section title="Contact" class="lg:pb-50">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- CV Box -->
         <a
@@ -118,4 +112,4 @@ import GlassBox from "../components/container/GlassBox.astro";
             </span>
         </GlassBox>
     </div>
-</section>
+</Section>

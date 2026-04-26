@@ -4,18 +4,14 @@ import SectTitle from "../components/common/SectTitle.astro";
 import GlassBox from "../components/container/GlassBox.astro";
 import BtnGeneric from "../components/btn/Generic.astro";
 import BtnBlue from "../components/btn/Blue.astro";
+import Section from "../components/common/Section.astro";
 
 const allProjects = await getCollection("projects");
 const mainProject = allProjects.find((p) => p.data.isMain);
 const secondaryProjects = allProjects.filter((p) => !p.data.isMain).slice(0, 3);
 ---
 
-<section
-    id="projects"
-    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-30"
-    aria-label="Projects"
->
-    <SectTitle title="Projects" />
+<Section title="Projects">
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-10">
         {
             mainProject && (
@@ -87,4 +83,4 @@ const secondaryProjects = allProjects.filter((p) => !p.data.isMain).slice(0, 3);
             }
         </div>
     </div>
-</section>
+</Section>

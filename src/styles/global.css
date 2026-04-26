@@ -31,13 +31,6 @@
     --color-btn-red: var(--btn-red);
     --color-input-bg: var(--input-bg);
 
-    --animate-circle-x: circle-x 60s infinite ease-in-out;
-    --animate-circle-y: circle-y 60s infinite ease-in-out;
-    --animate-circle-nx: circle-nx 60s infinite ease-in-out;
-    --animate-circle-ny: circle-ny 60s infinite ease-in-out;
-    --color-glass-start: rgba(255, 255, 255, 0.5);
-    --color-glass-end: rgba(255, 255, 255, 0.05);
-
     --shadow-pic: 0px 0px 25px rgba(197, 125, 249, 0.25);
     --shadow-instagram: 0px 0px 15px rgba(255, 102, 102, 1);
     --shadow-github: 0px 0px 15px rgba(255, 255, 255, 0.5);
@@ -56,10 +49,6 @@
     --shadow-lg: 10px 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 4px 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     --shadow-xl: 20px 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 8px 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     --shadow-2xl: 25px 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
-    --shadow-glow-sm: 0px 0px 6px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    --shadow-glow-md: 0px 0px 7px 1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    --shadow-glow-lg: 0px 0px 10px 3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    --shadow-glow-xl: 0px 0px 20px 5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0px 0px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
 }
 
 :root {
@@ -130,86 +119,6 @@
     box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, .1), 0 2px 40px 10px rgba(154, 170, 255, .05), 0 0 16px -7px rgba(154, 170, 255, .05);
 }
 
-/* Movimiento Horizontal */
-@keyframes circle-x {
-
-    0%,
-    100% {
-        transform: translate(0vw, 0vh) scaleX(1.5);
-    }
-
-    25%,
-    75% {
-        transform: translate(0vw, 0vh) scaleX(1);
-    }
-
-    50% {
-        transform: translate(85vw, 85vh) scaleX(0.5);
-    }
-}
-
-/* Movimiento Horizontal */
-@keyframes circle-nx {
-
-    0%,
-    100% {
-        transform: translate(0vw, 0vh) scaleX(1.5);
-    }
-
-    25%,
-    75% {
-        transform: translate(0vw, 0vh) scaleX(1);
-    }
-
-    50% {
-        transform: translate(-85vw, -85vh) scaleX(0.5);
-    }
-}
-
-/* Movimiento Vertical con un desfase de tiempo */
-@keyframes circle-y {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scale(0.8);
-    }
-
-    50% {
-        transform: rotate(360deg) scale(1.2);
-    }
-}
-
-@keyframes circle-ny {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scale(0.8);
-    }
-
-    50% {
-        transform: rotate(180deg) scale(1.2);
-    }
-}
-
-/* Clase de utilidad para el desfase (esto crea el círculo) */
-.offset-delay {
-    animation-delay: -5s;
-    /* La mitad del tiempo de la mitad del ciclo */
-}
-
-/* Utilidad para el delay (opcional si quieres que los blobs no se muevan al mismo tiempo) */
-.animation-delay-2 {
-    animation-delay: 4s;
-}
-
-.animation-delay-4 {
-    animation-delay: 9s;
-}
-
-.animation-delay-6 {
-    animation-delay: 14s;
-}
-
 /* Custom View Transition Durations */
 ::view-transition-old(root),
 ::view-transition-new(root),
@@ -217,39 +126,4 @@
 ::view-transition-new(icon-theme-switcher) {
     animation-duration: 0.7s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@utility gradient-border {
-    position: relative;
-    border-radius: inherit;
-    /* Hereda el redondeo de la tarjeta */
-    padding: 1.5px;
-    /* Este será el GROSOR de tu borde */
-
-    /* El fondo del pseudo-elemento será el gradiente del borde */
-    background: linear-gradient(50deg,
-            rgba(140, 128, 150, 0.1) 0%,
-            rgba(241, 230, 249, 0.05) 50%,
-            rgba(241, 230, 249, 0.4) 100%);
-
-    /* Esto "recorta" el fondo para que solo se vea en el borde */
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-}
-
-@layer utilities {
-    .perspective-1 {
-        perspective: 1px;
-    }
-
-    .transform-style-3d {
-        transform-style: preserve-3d;
-    }
-
-    .translate-z-neg-2 {
-        transform: translateZ(-2px) scale(3);
-    }
 }

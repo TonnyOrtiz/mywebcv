@@ -1,18 +1,12 @@
 ---
-import SectTitle from "../components/common/SectTitle.astro";
 import GlassBox from "../components/container/GlassBox.astro";
 import { getCollection } from "astro:content";
+import Section from "../components/common/Section.astro";
 const allExperiences = await getCollection("experience");
 const mainExperience = allExperiences.find((e) => e.data.isMain);
 ---
 
-<section
-    id="experience"
-    class="max-w-352 mx-auto w-full flex flex-col justify-center lg:min-h-screen lg:pb-30"
-    aria-label="Experience"
->
-    <SectTitle title="Experience" />
-
+<Section title="Experience">
     <div
         class="flex flex-col xl:flex-row md:items-stretch justify-center gap-6 md:gap-6"
     >
@@ -63,4 +57,4 @@ const mainExperience = allExperiences.find((e) => e.data.isMain);
             </div>
         </GlassBox>
     </div>
-</section>
+</Section>

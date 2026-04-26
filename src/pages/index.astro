@@ -1,16 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FullBox from "../components/container/FullBox.astro";
 import Profile from "../sections/Profile.astro";
 import Stack from "../sections/Stack.astro";
 import Projects from "../sections/Projects.astro";
 import Experience from "../sections/Experience.astro";
 import Contact from "../sections/Contact.astro";
-
 export const prerender = true;
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="Home">
@@ -25,24 +20,4 @@ export const prerender = true;
 		<Experience />
 		<Contact />
 	</main>
-	<footer
-		class="lg:timeline-view lg:animate-blurred-fade-in lg:animate-range-[entry_35%_contain_0%] w-full text-center
-		lg:absolute bottom-0 mt-10"
-	>
-		<FullBox
-			class="flex flex-col lg:flex-row justify-center items-center gap-4 py-6"
-		>
-			<p class="text-md text-font-secondary tracking-wide">
-				© 2026 Tonny Ortiz
-			</p>
-			<p
-				class="hidden lg:block text-md text-font-secondary tracking-wide"
-			>
-				-
-			</p>
-			<p class="text-md text-font-secondary tracking-wide">
-				Built with Astro & Tailwind.
-			</p>
-		</FullBox>
-	</footer>
 </Layout>

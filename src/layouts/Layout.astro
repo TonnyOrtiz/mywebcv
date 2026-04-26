@@ -1,8 +1,9 @@
 ---
 import "../styles/global.css";
-import TopBar from "../components/TopBar.astro";
+import TopBar from "./TopBar.astro";
 import { ClientRouter } from "astro:transitions";
 import Background from "../components/Background.astro";
+import Footer from "./Footer.astro";
 
 interface Props {
 	title: string;
@@ -44,6 +45,7 @@ const { title } = Astro.props;
 		<Background />
 		<TopBar />
 		<slot />
+		<Footer />
 	</body>
 </html>
 <script>

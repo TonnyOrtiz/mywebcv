@@ -1,0 +1,21 @@
+---
+import SectTitle from "./SectTitle.astro";
+import { cn } from "../../lib/utils";
+const { class: className, ...rest } = Astro.props;
+
+const { title } = Astro.props;
+---
+
+<section
+    id={title.toLowerCase()}
+    aria-label={title}
+    class={cn(
+        "max-w-352 mx-auto w-full flex flex-col justify-center",
+        "max-lg:pt-14 lg:min-h-screen lg:pb-30",
+        className,
+    )}
+    {...rest}
+>
+    <SectTitle title={title} />
+    <slot />
+</section>

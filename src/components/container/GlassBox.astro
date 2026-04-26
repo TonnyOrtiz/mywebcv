@@ -1,8 +1,7 @@
 ---
 interface Props {
     class?: string;
-    // Puedes añadir más props aquí
-    [key: string]: any; // Esto permite recibir cualquier otro atributo (id, data-*, etc)
+    [key: string]: any;
 }
 const { class: className = "", ...rest } = Astro.props;
 ---
