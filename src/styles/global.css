@@ -58,7 +58,7 @@
 }
 
 :root {
-    --topbar-bg: rgba(255, 255, 255, 0.8);
+    --topbar-bg: rgba(255, 255, 255, 0.85);
     --dropdown-bg: rgba(255, 255, 255, 1);
     --photo-bg: #A6A9DC;
     --bg-accent: #ebc1ff;
@@ -93,7 +93,7 @@
 }
 
 .dark {
-    --topbar-bg: rgba(0, 0, 0, 0.8);
+    --topbar-bg: rgba(0, 0, 0, 0.85);
     --dropdown-bg: rgba(0, 0, 0, 1);
     --photo-bg: #020100;
     --bg-accent: #190523;
@@ -132,4 +132,8 @@
 ::view-transition-new(icon-theme-switcher) {
     animation-duration: 0.7s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link-profile {
+    view-transition-name: profile-link;
 }
